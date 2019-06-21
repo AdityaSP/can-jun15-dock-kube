@@ -1,0 +1,1299 @@
+
+CMD >
+.3T
+.activator
+.anaconda
+.android
+.AndroidStudio3.3
+.astropy
+.atom
+.aws
+.azure
+.bash_history
+.berkshelf
+.chef
+.conda
+.condarc
+.config
+.dbshell
+.docker
+.dotnet
+.eclipse
+.emulator_console_auth_token
+.fcc
+.freemind
+.gimp-2.8
+.gitconfig
+.gradle
+.groovy
+.helm
+.idea-build
+.IdeaIC2016.3
+.idlerc
+.inspec
+.ipynb_checkpoints
+.ipython
+.ivy2
+.jenkins
+.jupyter
+.kafkatool2
+.kdiff3rc
+.keras
+.kitchen
+.kivy
+.kube
+.lesshst
+.local
+.m2
+.matplotlib
+.minikube
+.minttyrc
+.mongorc.js
+.nbi
+.node_repl_history
+.nuget
+.oracle_jre_usage
+.p2
+.pencil
+.puppet
+.puppetlabs
+.PyCharmCE2016.3
+.PyCharmCE2018.1
+.pylint.d
+.sbt
+.scalac
+.scalaide
+.scala_history
+.spyder
+.ssh
+.templateengine
+.thumbnails
+.tooling
+.vagrant.d
+.viminfo
+.VirtualBox
+.vscode
+ai
+AndroidStudioProjects
+apachelogs
+aug14
+aug7
+build_all.sh
+code
+command.txt
+commands.txt
+Contacts
+deploy.sh
+Desktop
+docker-code
+docker-kuber
+docker-workshop
+Dockerfile
+Documents
+Downloads
+drone-with-java
+dronedemo
+eclipse
+eclipse-workspace
+Favorites
+feb8
+forrebase
+gitdemo
+IdeaProjects
+java-docker-kube
+jul30
+k8s.conf
+kubernetes
+Links
+may2
+may3
+may4
+mercurial.ini
+Music
+myfile.txt
+myfolder
+New folder
+nginx-ping.tar
+Pictures
+productcatalogue
+PycharmProjects
+README.md
+repositories.json
+Saved Games
+scalaworkspace
+seaborn-data
+Searches
+sept29
+shopfront
+slimproj
+source
+ssh.exe.stackdump
+stockmanager
+SuperPuTTY.settings
+temp
+todel
+to_del
+Tracing
+Untitled Folder
+Untitled.ipynb
+Untitled1.ipynb
+Untitled2.ipynb
+Untitled3.ipynb
+userdec28.crt
+userdec28.pem
+userjan25.crt
+userjan31.crt
+userjan31.pem
+venv
+Videos
+VirtualBox VMs
+workspace
+
+C:\Users\Dell lap  
+CMD >userdec28.crt
+C:\Users\Dell lap  
+CMD >kubectl get version
+Client Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.0", GitCommit:"925c127ec6b946659ad0fd596fa959be43f0cc05", GitTreeState:"clean", BuildDate:"2017-12-15T21:07:38Z", GoVersion:"go1.9.2", Compiler:"gc", Platform:"windows/amd64"}
+Server Version: version.Info{Major:"", Minor:"", GitVersion:"v1.9.0", GitCommit:"925c127ec6b946659ad0fd596fa959be43f0cc05", GitTreeState:"clean", BuildDate:"2018-01-26T19:04:38Z", GoVersion:"go1.9.1", Compiler:"gc", Platform:"linux/amd64"}
+
+C:\Users\Dell lap  
+CMD >
+CMD >
+CMD >
+CMD >
+CMD >
+CMD >
+C:\Users\Dell lap  
+CMD >kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   
+*         minikube                      minikube     minikube           
+
+C:\Users\Dell lap  
+CMD >cd docker-workshop\jun15\
+app\                  can-jun15-dock-kube\  save\                 
+build-machine\        htmlonly\             
+C:\Users\Dell lap  
+CMD >cd docker-workshop\jun15\can-jun15-dock-kube\
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube  
+CMD >cd k8s\
+dep\      pod\      pv-pvc\   rc\       service\  
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube  
+CMD >cd k8s\
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f pod\pod-helloworld.yml 
+pod "my-nginx" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get podssds
+NAME       READY     STATUS    RESTARTS   AGE
+my-nginx   1/1       Running   0          37s
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl describe pod my-nginx
+Name:         my-nginx
+Namespace:    default
+Node:         minikube/192.168.99.143
+Start Time:   Mon, 17 Jun 2019 11:28:32 +0530
+Labels:       app=helloworld
+Annotations:  kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"helloworld"},"name":"my-nginx","namespace":"default"},"spec":{"containers...
+Status:       Running
+IP:           172.17.0.14
+Containers:
+  nginx:
+    Container ID:   docker://918b7231c70b7e9ecb860c15f3fc972d8ac6ace0204a7c9d5967c54ff54c0573
+    Image:          nginx:alpine
+    Image ID:       docker-pullable://nginx@sha256:366c39a589f69a893368d942d9d323893025e8c27a523657ba3a2119dfc66057
+    Port:           80/TCP
+    State:          Running
+      Started:      Mon, 17 Jun 2019 11:28:57 +0530
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-448nd (ro)
+Conditions:
+  Type           Status
+  Initialized    True 
+  Ready          True 
+  PodScheduled   True 
+Volumes:
+  default-token-448nd:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-448nd
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     <none>
+Events:
+  Type    Reason                 Age   From               Message
+  ----    ------                 ----  ----               -------
+  Normal  Scheduled              2m    default-scheduler  Successfully assigned my-nginx to minikube
+  Normal  SuccessfulMountVolume  2m    kubelet, minikube  MountVolume.SetUp succeeded for volume "default-token-448nd"
+  Normal  Pulling                2m    kubelet, minikube  pulling image "nginx:alpine"
+  Normal  Pulled                 1m    kubelet, minikube  Successfully pulled image "nginx:alpine"
+  Normal  Created                1m    kubelet, minikube  Created container
+  Normal  Started                1m    kubelet, minikube  Started container
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl ge tpot pods
+NAME       READY     STATUS    RESTARTS   AGE
+my-nginx   1/1       Running   0          31m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete pod my-nginx#
+'#kubectl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubect #kubectl delete pod my-nginx%
+'%#kubectl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >%#kubectl delete pod my-nginx@
+'#kubectl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >@#kubectl delete pod my-nginxrem 
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >rem @#kubectl delete pod my-nginx
+%
+@
+%
+'#kubectl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >#kubectl delete pod my-nginxkubectl delete -f pod\pod-helloworld.yml 
+pod "my-nginx" deleted
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f rc\rc-helloworld.yml 
+replicationcontroller "helloworld-controller" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get replicationcontrollerc
+NAME                    DESIRED   CURRENT   READY     AGE
+helloworld-controller   2         2         2         1m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl describe rc helloworld-controller
+Name:         helloworld-controller
+Namespace:    default
+Selector:     app=helloworld
+Labels:       app=helloworld
+Annotations:  kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"v1","kind":"ReplicationController","metadata":{"annotations":{},"name":"helloworld-controller","namespace":"default"},"spec":{"replicas"...
+Replicas:     2 current / 2 desired
+Pods Status:  2 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  app=helloworld
+  Containers:
+   nginx:
+    Image:        nginx:alpine
+    Port:         80/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Events:
+  Type    Reason            Age   From                    Message
+  ----    ------            ----  ----                    -------
+  Normal  SuccessfulCreate  2m    replication-controller  Created pod: helloworld-controller-9ljk9
+  Normal  SuccessfulCreate  2m    replication-controller  Created pod: helloworld-controller-xpwhf
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubctectl get pods
+NAME                          READY     STATUS    RESTARTS   AGE
+helloworld-controller-9ljk9   1/1       Running   0          3m
+helloworld-controller-xpwhf   1/1       Running   0          3m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete pod helloworld-controller-xpwhf
+pod "helloworld-controller-xpwhf" deleted
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete pod helloworld-controller-xpwhf
+get pods
+NAME                          READY     STATUS        RESTARTS   AGE
+helloworld-controller-8nw7b   1/1       Running       0          7s
+helloworld-controller-9ljk9   1/1       Running       0          5m
+helloworld-controller-xpwhf   0/1       Terminating   0          5m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                          READY     STATUS    RESTARTS   AGE
+helloworld-controller-8nw7b   1/1       Running   0          31s
+helloworld-controller-9ljk9   1/1       Running   0          6m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods -o wide
+NAME                          READY     STATUS    RESTARTS   AGE       IP            NODE
+helloworld-controller-8nw7b   1/1       Running   0          1m        172.17.0.14   minikube
+helloworld-controller-9ljk9   1/1       Running   0          6m        172.17.0.15   minikube
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl sclaale rc helloworld-controller --replicas 5
+replicationcontroller "helloworld-controller" scaled
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl scale rc helloworld-controller --replicas 5
+get pods -o wide
+NAME                          READY     STATUS    RESTARTS   AGE       IP            NODE
+helloworld-controller-2dkjk   1/1       Running   0          6s        172.17.0.18   minikube
+helloworld-controller-8nw7b   1/1       Running   0          3m        172.17.0.14   minikube
+helloworld-controller-9ljk9   1/1       Running   0          8m        172.17.0.15   minikube
+helloworld-controller-c2x95   1/1       Running   0          6s        172.17.0.17   minikube
+helloworld-controller-xbcb4   1/1       Running   0          6s        172.17.0.16   minikube
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods -o wide
+scale rc helloworld-controller --replicas 52
+replicationcontroller "helloworld-controller" scaled
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl scale rc helloworld-controller --replicas 2
+get pods -o wide
+NAME                          READY     STATUS    RESTARTS   AGE       IP            NODE
+helloworld-controller-8nw7b   1/1       Running   0          10m       172.17.0.14   minikube
+helloworld-controller-9ljk9   1/1       Running   0          16m       172.17.0.15   minikube
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f rc/r\rc-helloworld.yml 
+replicationcontroller "helloworld-controller" configured
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f rc\rc-helloworld.yml 
+get pods -o wide
+NAME                          READY     STATUS    RESTARTS   AGE       IP            NODE
+helloworld-controller-8nw7b   1/1       Running   0          11m       172.17.0.14   minikube
+helloworld-controller-9ljk9   1/1       Running   0          16m       172.17.0.15   minikube
+helloworld-controller-bcjm5   1/1       Running   0          8s        172.17.0.17   minikube
+helloworld-controller-dpqsg   1/1       Running   0          8s        172.17.0.16   minikube
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods --show-labels
+NAME                          READY     STATUS    RESTARTS   AGE       LABELS
+helloworld-controller-8nw7b   1/1       Running   0          14m       app=helloworld
+helloworld-controller-9ljk9   1/1       Running   0          19m       app=helloworld
+helloworld-controller-bcjm5   1/1       Running   0          3m        app=helloworld
+helloworld-controller-dpqsg   1/1       Running   0          3m        app=helloworld
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete pod rc helloworld-controller
+replicationcontroller "helloworld-controller" deleted
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete rc helloworld-controller
+get pods --show-labels
+No resources found.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f pod\pod-helloworld.yml 
+pod "my-nginx" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD > kubectl apply -f rc\rc-helloworld.yml 
+replicationcontroller "helloworld-controller" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                          READY     STATUS    RESTARTS   AGE
+helloworld-controller-66nht   1/1       Running   0          59s
+my-nginx                      1/1       Running   0          3m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods --show-labels
+NAME                          READY     STATUS    RESTARTS   AGE       LABELS
+helloworld-controller-66nht   1/1       Running   0          1m        app=helloworld
+my-nginx                      1/1       Running   0          3m        app=helloworld
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete pod my-nginx
+pod "my-nginx" deleted
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete pod my-nginx
+get pods --show-labels
+NAME                          READY     STATUS    RESTARTS   AGE       LABELS
+helloworld-controller-66nht   1/1       Running   0          3m        app=helloworld
+helloworld-controller-skp9w   1/1       Running   0          6s        app=helloworld
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl capply -f pod\pod-helloworld.yml 
+pod "my-nginx" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f pod\pod-helloworld.yml 
+get pods --show-labels
+NAME                          READY     STATUS        RESTARTS   AGE       LABELS
+helloworld-controller-66nht   1/1       Running       0          3m        app=helloworld
+helloworld-controller-skp9w   1/1       Running       0          17s       app=helloworld
+my-nginx                      0/1       Terminating   0          6s        app=helloworld
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl deleet et e rc - rc\rc-helloworld.yml 
+Error from server (NotFound): replicationcontrollers "-" not found
+Error from server (NotFound): replicationcontrollers "rc\\rc-helloworld.yml" not found
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete rc - rc\rc-helloworld.yml -f
+replicationcontroller "helloworld-controller" deleted
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl delete -f rc\rc-helloworld.yml 
+rc -
+get pods --show-labels
+No resources found.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f dep\hdep-helloworld.yml 
+deployment "helloworld-dep" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                              READY     STATUS    RESTARTS   AGE
+helloworld-dep-765746cb75-f7qq4   1/1       Running   0          1m
+helloworld-dep-765746cb75-fjz8z   1/1       Running   0          1m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get deployment hwllelloworld-dep
+NAME             DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+helloworld-dep   2         2         2            2           2m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get rs
+NAME                        DESIRED   CURRENT   READY     AGE
+helloworld-dep-765746cb75   2         2         2         2m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                              READY     STATUS    RESTARTS   AGE
+helloworld-dep-765746cb75-f7qq4   1/1       Running   0          2m
+helloworld-dep-765746cb75-fjz8z   1/1       Running   0          2m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get rc
+No resources found.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get rcpods --show-label
+Error: unknown flag: --show-label
+
+
+Examples:
+  # List all pods in ps output format.
+  kubectl get pods
+  
+  # List all pods in ps output format with more information (such as node name).
+  kubectl get pods -o wide
+  
+  # List a single replication controller with specified NAME in ps output format.
+  kubectl get replicationcontroller web
+  
+  # List a single pod in JSON output format.
+  kubectl get -o json pod web-pod-13je7
+  
+  # List a pod identified by type and name specified in "pod.yaml" in JSON output format.
+  kubectl get -f pod.yaml -o json
+  
+  # Return only the phase value of the specified pod.
+  kubectl get -o template pod/web-pod-13je7 --template={{.status.phase}}
+  
+  # List all replication controllers and services together in ps output format.
+  kubectl get rc,services
+  
+  # List one or more resources by their type and names.
+  kubectl get rc/web service/frontend pods/web-pod-13je7
+  
+  # List all resources with different types.
+  kubectl get all
+
+Options:
+      --all-namespaces=false: If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.
+      --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
+      --chunk-size=500: Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.
+      --export=false: If true, use 'export' for the resources.  Exported resources are stripped of cluster-specific information.
+      --field-selector='': Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.
+  -f, --filename=[]: Filename, directory, or URL to files identifying the resource to get from a server.
+      --ignore-not-found=false: If the requested object does not exist the command will return exit code 0.
+      --include-extended-apis=true: If true, include definitions of new APIs via calls to the API server. [default true]
+      --include-uninitialized=false: If true, the kubectl command applies to uninitialized objects. If explicitly set to false, this flag overrides other flags that make the kubectl commands apply to uninitialized objects, e.g., "--all". Objects with empty metadata.initializers are regarded as initialized.
+  -L, --label-columns=[]: Accepts a comma separated list of labels that are going to be presented as columns. Names are case-sensitive. You can also use multiple flag options like -L label1 -L label2...
+      --no-headers=false: When using the default or custom-column output format, don't print headers (default print headers).
+  -o, --output='': Output format. One of: json|yaml|wide|name|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=... See custom columns [http://kubernetes.io/docs/user-guide/kubectl-overview/#custom-columns], golang template [http://golang.org/pkg/text/template/#pkg-overview] and jsonpath template [http://kubernetes.io/docs/user-guide/jsonpath].
+      --raw='': Raw URI to request from the server.  Uses the transport specified by the kubeconfig file.
+  -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.
+  -l, --selector='': Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+  -a, --show-all=false: When printing, show all resources (default hide terminated pods.)
+      --show-kind=false: If present, list the resource type for the requested object(s).
+      --show-labels=false: When printing, show all labels as the last column (default hide labels column)
+      --sort-by='': If non-empty, sort list types using this field specification.  The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string.
+      --template='': Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+      --use-openapi-print-columns=true: If true, use x-kubernetes-print-column metadata (if present) from the OpenAPI schema for displaying a resource.
+  -w, --watch=false: After listing/getting the requested object, watch for changes. Uninitialized objects are excluded if no object name is provided.
+      --watch-only=false: Watch for changes to the requested object(s), without listing/getting first.
+
+Usage:
+  kubectl get [(-o|--output=)json|yaml|wide|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=...] (TYPE [NAME | -l label] | TYPE/NAME ...) [flags] [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+
+error: unknown flag: --show-label
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods --show-labels
+NAME                              READY     STATUS    RESTARTS   AGE       LABELS
+helloworld-dep-765746cb75-f7qq4   1/1       Running   0          4m        app=helloworld,pod-template-hash=3213027631
+helloworld-dep-765746cb75-fjz8z   1/1       Running   0          4m        app=helloworld,pod-template-hash=3213027631
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f pod\pod-helloworld.yml 
+pod "my-nginx" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f pod\pod-helloworld.yml 
+get pods --show-labels
+NAME                              READY     STATUS    RESTARTS   AGE       LABELS
+helloworld-dep-765746cb75-f7qq4   1/1       Running   0          4m        app=helloworld,pod-template-hash=3213027631
+helloworld-dep-765746cb75-fjz8z   1/1       Running   0          4m        app=helloworld,pod-template-hash=3213027631
+my-nginx                          1/1       Running   0          6s        app=helloworld
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods --show-labels
+(reverse-i-search)`': s': kubectl get pods --show-labels
+c': kubectl scale rc helloworld-controller --replicas 2
+al
+CMD >deploy hdep 5
+deployment "helloworld-dep" scaled
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                              READY     STATUS              RESTARTS   AGE
+helloworld-dep-765746cb75-6kzmc   1/1       Running             0          19s
+helloworld-dep-765746cb75-9bdvv   1/1       Running             0          19s
+helloworld-dep-765746cb75-bx8pf   0/1       ContainerCreating   0          19s
+helloworld-dep-765746cb75-f7qq4   1/1       Running             0          6m
+helloworld-dep-765746cb75-fjz8z   1/1       Running             0          6m
+my-nginx                          1/1       Running             0          2m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                              READY     STATUS    RESTARTS   AGE
+helloworld-dep-765746cb75-6kzmc   1/1       Running   0          31s
+helloworld-dep-765746cb75-9bdvv   1/1       Running   0          31s
+helloworld-dep-765746cb75-bx8pf   1/1       Running   0          31s
+helloworld-dep-765746cb75-f7qq4   1/1       Running   0          6m
+helloworld-dep-765746cb75-fjz8z   1/1       Running   0          6m
+my-nginx                          1/1       Running   0          2m
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods -o -show-labels
+NAME                              READY     STATUS    RESTARTS   AGE       LABELS
+helloworld-dep-765746cb75-6kzmc   1/1       Running   0          46s       app=helloworld,pod-template-hash=3213027631
+helloworld-dep-765746cb75-9bdvv   1/1       Running   0          46s       app=helloworld,pod-template-hash=3213027631
+helloworld-dep-765746cb75-bx8pf   1/1       Running   0          46s       app=helloworld,pod-template-hash=3213027631
+helloworld-dep-765746cb75-f7qq4   1/1       Running   0          7m        app=helloworld,pod-template-hash=3213027631
+helloworld-dep-765746cb75-fjz8z   1/1       Running   0          7m        app=helloworld,pod-template-hash=3213027631
+my-nginx                          1/1       Running   0          2m        app=helloworld
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get deploy
+NAME             DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+helloworld-dep   5         5         5            5           1h
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+(reverse-i-search)`': s': kubectl get pods --show-labels
+c': kubectl scale deploy helloworld-dep --replicas 5
+CMD >10
+deployment "helloworld-dep" scaled
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl rollout history deploy helloworld-dep
+deployments "helloworld-dep"
+REVISION  CHANGE-CAUSE
+1         <none>
+
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl roolllout history deployhe helloworld-dep --revision 1
+deployments "helloworld-dep" with revision #1
+Pod Template:
+  Labels:	app=helloworld
+	pod-template-hash=3213027631
+  Containers:
+   web:
+    Image:	nginx
+    Port:	80/TCP
+    Environment:	<none>
+    Mounts:	<none>
+  Volumes:	<none>
+
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl rollout history deploy helloworld-dep --revision 1get pods
+NAME                              READY     STATUS    RESTARTS   AGE
+helloworld-dep-765746cb75-4gzsl   1/1       Running   0          2m
+helloworld-dep-765746cb75-6kzmc   1/1       Running   0          1h
+helloworld-dep-765746cb75-8tmc9   1/1       Running   0          2m
+helloworld-dep-765746cb75-9bdvv   1/1       Running   0          1h
+helloworld-dep-765746cb75-bx8pf   1/1       Running   0          1h
+helloworld-dep-765746cb75-f7qq4   1/1       Running   0          1h
+helloworld-dep-765746cb75-ffzlc   1/1       Running   0          2m
+helloworld-dep-765746cb75-fjz8z   1/1       Running   0          1h
+helloworld-dep-765746cb75-kgqxm   1/1       Running   0          2m
+helloworld-dep-765746cb75-knvkw   1/1       Running   0          2m
+my-nginx                          1/1       Running   0          1h
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl set image deploy helloworoldld-depll web =nginx:alpine#
+'#kubectl' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl roollout status deploy helloworolld-dep
+deployment "helloworld-dep" successfully rolled out
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl set image deploy helloworld-dep web=nginx:alpine
+deployment "helloworld-dep" image updated
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl set image deploy helloworld-dep web=nginx:alpine
+rollout status deploy helloworld-dep
+Waiting for rollout to finish: 2 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 2 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 2 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 2 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 3 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 3 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 3 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 3 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 3 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 4 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 4 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 4 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 4 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 4 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 4 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 5 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 5 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 5 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 5 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 6 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 6 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 6 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 6 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 6 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 7 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 7 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 7 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 7 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 8 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 8 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 8 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 8 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 8 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 9 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 9 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 9 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 9 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 9 out of 10 new replicas have been updated...
+Waiting for rollout to finish: 1 old replicas are pending termination...
+Waiting for rollout to finish: 1 old replicas are pending termination...
+Waiting for rollout to finish: 1 old replicas are pending termination...
+Waiting for rollout to finish: 9 of 10 updated replicas are available...
+deployment "helloworld-dep" successfully rolled out
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl rollout status deploy helloworld-dep
+set image deploy helloworld-dep web=nginx:alpine
+#
+kubectl get podsrollout history deploy helloworld-dep --revision 1
+deployments "helloworld-dep"
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl rollout history deploy helloworld-dep --revision 2
+deployments "helloworld-dep" with revision #2
+Pod Template:
+  Labels:	app=helloworld
+	pod-template-hash=3843324994
+  Containers:
+   web:
+    Image:	nginx:alpine
+    Port:	80/TCP
+    Environment:	<none>
+    Mounts:	<none>
+  Volumes:	<none>
+
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl rollout history deploy helloworld-dep --revision 21
+deployments "helloworld-dep" with revision #1
+Pod Template:
+  Labels:	app=helloworld
+	pod-template-hash=3213027631
+  Containers:
+   web:
+    Image:	nginx
+    Port:	80/TCP
+    Environment:	<none>
+    Mounts:	<none>
+  Volumes:	<none>
+
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+(reverse-i-search)`': r': kubectl rollout history deploy helloworld-dep --revision 1
+e
+p': kubectl scale deploy helloworld-dep --replicas 10
+CMD >::
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+(reverse-i-search)`': r': ::kubectl scale deploy helloworld-dep --replicas 10
+o': kubectl rollout history deploy helloworld-dep --revision 1
+ll
+CMD >
+::
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+(reverse-i-search)`': r': ::kubectl rollout history deploy helloworld-dep
+ol
+CMD >
+ =--- revision 1
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+(reverse-i-search)`': s': ::kubectl rollout history deploy helloworld-dep --revision 1
+t
+a': kubectl rollout status deploy helloworld-dep
+CMD >
+::
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+(reverse-i-search)`': s': ::kubectl rollout status deploy helloworld-dep
+e': kubectl set image deploy helloworld-dep web=nginx:alpine
+t
+CMD >
+::
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >::kubectl set image deploy helloworld-dep web=nginx:alpine
+rollout status deploy helloworld-dep
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl rollout undo deploy helloworoldld-dep --to-revision 1
+deployment "helloworld-dep" 
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl rollout history deploy helloworolld-deploy
+Error from server (NotFound): deployments.extensions "helloworld-deploy" not found
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl rollout history deploy helloworld-deploy
+deployments "helloworld-dep"
+REVISION  CHANGE-CAUSE
+2         <none>
+3         <none>
+
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+(reverse-i-search)`': e': kubectl rollout history deploy helloworld-dep
+t': ::kubectl set image deploy helloworld-dep web=nginx:alpine
+CMD >1 --record
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >::kubectl set image deploy helloworld-dep web=nginx:1 --record
+deployment "helloworld-dep" image updated
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl set image deploy helloworld-dep web=nginx:1 --record
+::
+kubectl rollout history deploy helloworld-dep
+deployments "helloworld-dep"
+REVISION  CHANGE-CAUSE
+2         <none>
+3         <none>
+4         kubectl set image deploy helloworld-dep web=nginx:1 --record=true
+
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f blog\blog-db.yml 
+deployment "blog-db-dep" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                             READY     STATUS    RESTARTS   AGE
+blog-db-dep-654dfc76d9-n6vv5     1/1       Running   0          1m
+helloworld-dep-598ff56d8-2g8kz   1/1       Running   0          16m
+helloworld-dep-598ff56d8-5fjgx   1/1       Running   0          16m
+helloworld-dep-598ff56d8-7qbxm   1/1       Running   0          16m
+helloworld-dep-598ff56d8-9r4kj   1/1       Running   0          17m
+helloworld-dep-598ff56d8-fjq2q   1/1       Running   0          17m
+helloworld-dep-598ff56d8-jjhzv   1/1       Running   0          16m
+helloworld-dep-598ff56d8-k7szx   1/1       Running   0          16m
+helloworld-dep-598ff56d8-nkkk4   1/1       Running   0          16m
+helloworld-dep-598ff56d8-sln64   1/1       Running   0          17m
+helloworld-dep-598ff56d8-x8779   1/1       Running   0          16m
+my-nginx                         1/1       Running   0          1h
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >k
+(reverse-i-search)`': s': kubectl get podsc': ::kubectl scale deploy helloworld-dep --replicas 10
+ale
+CMD >0
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >::kubectl scale deploy helloworld-dep --replicas 0
+kubectl get pods
+NAME                             READY     STATUS    RESTARTS   AGE
+blog-db-dep-654dfc76d9-n6vv5     1/1       Running   0          2m
+helloworld-dep-598ff56d8-2g8kz   1/1       Running   0          17m
+helloworld-dep-598ff56d8-5fjgx   1/1       Running   0          17m
+helloworld-dep-598ff56d8-7qbxm   1/1       Running   0          17m
+helloworld-dep-598ff56d8-9r4kj   1/1       Running   0          17m
+helloworld-dep-598ff56d8-fjq2q   1/1       Running   0          17m
+helloworld-dep-598ff56d8-jjhzv   1/1       Running   0          17m
+helloworld-dep-598ff56d8-k7szx   1/1       Running   0          17m
+helloworld-dep-598ff56d8-nkkk4   1/1       Running   0          16m
+helloworld-dep-598ff56d8-sln64   1/1       Running   0          17m
+helloworld-dep-598ff56d8-x8779   1/1       Running   0          17m
+my-nginx                         1/1       Running   0          1h
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+::kubectl scale deploy helloworld-dep --replicas 0
+deployment "helloworld-dep" scaled
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl scale deploy helloworld-dep --replicas 0
+get pods
+NAME                             READY     STATUS        RESTARTS   AGE
+blog-db-dep-654dfc76d9-n6vv5     1/1       Running       0          2m
+helloworld-dep-598ff56d8-2g8kz   1/1       Terminating   0          17m
+helloworld-dep-598ff56d8-5fjgx   1/1       Terminating   0          17m
+helloworld-dep-598ff56d8-7qbxm   1/1       Terminating   0          17m
+helloworld-dep-598ff56d8-9r4kj   1/1       Terminating   0          18m
+helloworld-dep-598ff56d8-fjq2q   1/1       Terminating   0          18m
+helloworld-dep-598ff56d8-jjhzv   1/1       Terminating   0          17m
+helloworld-dep-598ff56d8-k7szx   1/1       Terminating   0          18m
+helloworld-dep-598ff56d8-nkkk4   1/1       Terminating   0          17m
+helloworld-dep-598ff56d8-sln64   1/1       Terminating   0          18m
+helloworld-dep-598ff56d8-x8779   1/1       Terminating   0          17m
+my-nginx                         1/1       Running       0          1h
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                           READY     STATUS    RESTARTS   AGE
+blog-db-dep-654dfc76d9-n6vv5   1/1       Running   0          3m
+my-nginx                       1/1       Running   0          1h
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl logs get logs blog-db-dep-654dfc76d9-n6vv5
+the server doesn't have a resource type "logs"
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get logs blog-db-dep-654dfc76d9-n6vv5
+Initializing database
+2019-06-17T09:15:31.852190Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2019-06-17T09:15:50.811408Z 0 [Warning] InnoDB: New log files created, LSN=45790
+2019-06-17T09:15:53.452547Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+2019-06-17T09:15:53.591022Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 81c757ac-90e0-11e9-a2e3-0242ac11000e.
+2019-06-17T09:15:53.605514Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2019-06-17T09:15:53.606783Z 1 [Warning] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2019-06-17T09:16:04.553619Z 1 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:04.554753Z 1 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:04.554938Z 1 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:04.555301Z 1 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:04.555338Z 1 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:04.555473Z 1 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:04.556995Z 1 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:04.557084Z 1 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+Database initialized
+Initializing certificates
+Generating a RSA private key
+............................+++++
+..........................................................+++++
+unable to write 'random state'
+writing new private key to 'ca-key.pem'
+-----
+Generating a RSA private key
+.................+++++
+..............................................................................................................+++++
+unable to write 'random state'
+writing new private key to 'server-key.pem'
+-----
+Generating a RSA private key
+........+++++
+...........................+++++
+unable to write 'random state'
+writing new private key to 'client-key.pem'
+-----
+Certificates initialized
+MySQL init process in progress...
+MySQL init process in progress...
+MySQL init process in progress...
+MySQL init process in progress...
+MySQL init process in progress...
+MySQL init process in progress...
+2019-06-17T09:16:28.060010Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2019-06-17T09:16:28.688609Z 0 [Note] mysqld (mysqld 5.7.25) starting as process 89 ...
+2019-06-17T09:16:28.790509Z 0 [Note] InnoDB: PUNCH HOLE support available
+2019-06-17T09:16:28.790727Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2019-06-17T09:16:28.790756Z 0 [Note] InnoDB: Uses event mutexes
+2019-06-17T09:16:28.791286Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+2019-06-17T09:16:28.791317Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2019-06-17T09:16:28.792064Z 0 [Note] InnoDB: Using Linux native AIO
+2019-06-17T09:16:28.794267Z 0 [Note] InnoDB: Number of pools: 1
+2019-06-17T09:16:28.796296Z 0 [Note] InnoDB: Using CPU crc32 instructions
+2019-06-17T09:16:28.849948Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+MySQL init process in progress...
+2019-06-17T09:16:29.613160Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2019-06-17T09:16:30.099600Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2019-06-17T09:16:31.011880Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2019-06-17T09:16:31.049901Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2019-06-17T09:16:31.050768Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+MySQL init process in progress...
+2019-06-17T09:16:32.348195Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2019-06-17T09:16:32.353692Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2019-06-17T09:16:32.353959Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2019-06-17T09:16:32.628313Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:16:32.678953Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:16:32.729825Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:16:33.065597Z 0 [Note] InnoDB: 5.7.25 started; log sequence number 2527567
+2019-06-17T09:16:33.067911Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2019-06-17T09:16:34.632068Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+MySQL init process in progress...
+2019-06-17T09:16:36.754904Z 0 [Note] InnoDB: Buffer pool(s) load completed at 190617  9:16:36
+2019-06-17T09:16:36.772231Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+2019-06-17T09:16:36.777668Z 0 [Warning] CA certificate ca.pem is self signed.
+2019-06-17T09:16:36.824665Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2019-06-17T09:16:36.831548Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:36.831840Z 0 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:36.831856Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:36.832020Z 0 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:36.832030Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:36.832180Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:36.840437Z 0 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:36.840480Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:16:41.769824Z 0 [Note] Event Scheduler: Loaded 0 events
+2019-06-17T09:16:41.770683Z 0 [Note] mysqld: ready for connections.
+Version: '5.7.25'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)
+2019-06-17T09:17:11.070797Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 4907ms. The settings might not be optimal. (flushed=21 and evicted=0, during the time.)
+2019-06-17T09:17:31.116529Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 9983ms. The settings might not be optimal. (flushed=14 and evicted=0, during the time.)
+Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+2019-06-17T09:18:00.874818Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 4298ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2019-06-17T09:18:13.531101Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 11465ms. The settings might not be optimal. (flushed=200 and evicted=0, during the time.)
+2019-06-17T09:18:27.882697Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 8363ms. The settings might not be optimal. (flushed=103 and evicted=0, during the time.)
+Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+2019-06-17T09:18:36.064203Z 4 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:36.064846Z 4 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:36.064930Z 4 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:36.065161Z 4 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:36.065254Z 4 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:36.065280Z 4 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:36.065387Z 4 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:36.065437Z 4 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:36.315962Z 0 [Note] Giving 0 client threads a chance to die gracefully
+2019-06-17T09:18:36.315997Z 0 [Note] Shutting down slave threads
+2019-06-17T09:18:36.317129Z 0 [Note] Forcefully disconnecting 0 remaining clients
+2019-06-17T09:18:36.317159Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+
+2019-06-17T09:18:36.318539Z 0 [Note] Binlog end
+2019-06-17T09:18:36.329163Z 0 [Note] Shutting down plugin 'ngram'
+2019-06-17T09:18:36.329188Z 0 [Note] Shutting down plugin 'partition'
+2019-06-17T09:18:36.329194Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2019-06-17T09:18:36.329200Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2019-06-17T09:18:36.329204Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2019-06-17T09:18:36.329237Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2019-06-17T09:18:36.329243Z 0 [Note] Shutting down plugin 'MyISAM'
+2019-06-17T09:18:36.329257Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2019-06-17T09:18:36.329768Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2019-06-17T09:18:36.329785Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2019-06-17T09:18:36.329790Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2019-06-17T09:18:36.329794Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2019-06-17T09:18:36.329799Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2019-06-17T09:18:36.329803Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2019-06-17T09:18:36.329807Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2019-06-17T09:18:36.329812Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2019-06-17T09:18:36.329816Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2019-06-17T09:18:36.329821Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2019-06-17T09:18:36.329825Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2019-06-17T09:18:36.329828Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2019-06-17T09:18:36.329833Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2019-06-17T09:18:36.329837Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2019-06-17T09:18:36.329996Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2019-06-17T09:18:36.330005Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2019-06-17T09:18:36.330009Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2019-06-17T09:18:36.330014Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2019-06-17T09:18:36.330019Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2019-06-17T09:18:36.330023Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2019-06-17T09:18:36.330027Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2019-06-17T09:18:36.330032Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2019-06-17T09:18:36.330036Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2019-06-17T09:18:36.330041Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2019-06-17T09:18:36.330045Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2019-06-17T09:18:36.330049Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2019-06-17T09:18:36.330169Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2019-06-17T09:18:36.330173Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2019-06-17T09:18:36.330177Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2019-06-17T09:18:36.330181Z 0 [Note] Shutting down plugin 'InnoDB'
+2019-06-17T09:18:36.344314Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2019-06-17T09:18:36.464191Z 0 [Note] InnoDB: Starting shutdown...
+2019-06-17T09:18:36.645097Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+2019-06-17T09:18:36.647153Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 190617  9:18:36
+2019-06-17T09:18:37.897353Z 0 [Note] InnoDB: Shutdown completed; log sequence number 12363851
+2019-06-17T09:18:37.915472Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2019-06-17T09:18:37.915915Z 0 [Note] Shutting down plugin 'MEMORY'
+2019-06-17T09:18:37.927917Z 0 [Note] Shutting down plugin 'CSV'
+2019-06-17T09:18:37.928361Z 0 [Note] Shutting down plugin 'sha256_password'
+2019-06-17T09:18:37.928504Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2019-06-17T09:18:37.928706Z 0 [Note] Shutting down plugin 'binlog'
+2019-06-17T09:18:37.940768Z 0 [Note] mysqld: Shutdown complete
+
+
+MySQL init process done. Ready for start up.
+
+2019-06-17T09:18:45.873568Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2019-06-17T09:18:46.505437Z 0 [Note] mysqld (mysqld 5.7.25) starting as process 1 ...
+2019-06-17T09:18:47.405154Z 0 [Note] InnoDB: PUNCH HOLE support available
+2019-06-17T09:18:47.405207Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2019-06-17T09:18:47.405218Z 0 [Note] InnoDB: Uses event mutexes
+2019-06-17T09:18:47.405227Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+2019-06-17T09:18:47.405234Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2019-06-17T09:18:47.405242Z 0 [Note] InnoDB: Using Linux native AIO
+2019-06-17T09:18:47.459085Z 0 [Note] InnoDB: Number of pools: 1
+2019-06-17T09:18:48.210131Z 0 [Note] InnoDB: Using CPU crc32 instructions
+2019-06-17T09:18:48.373848Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2019-06-17T09:18:48.616068Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2019-06-17T09:18:49.119655Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2019-06-17T09:18:49.431184Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2019-06-17T09:18:49.930173Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2019-06-17T09:18:49.931224Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2019-06-17T09:18:50.723739Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2019-06-17T09:18:50.732354Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2019-06-17T09:18:50.732935Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2019-06-17T09:18:50.967443Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.018118Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.070505Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.121375Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.172793Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.222979Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.273234Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.326273Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.377134Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.427352Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.479375Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.530097Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.641395Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.691649Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.741927Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.792669Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.846842Z 0 [Note] InnoDB: Waiting for purge to start
+2019-06-17T09:18:51.905142Z 0 [Note] InnoDB: 5.7.25 started; log sequence number 12363851
+2019-06-17T09:18:51.906524Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2019-06-17T09:18:51.917641Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2019-06-17T09:18:52.407625Z 0 [Note] InnoDB: Buffer pool(s) load completed at 190617  9:18:52
+2019-06-17T09:18:53.435525Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+2019-06-17T09:18:53.440372Z 0 [Warning] CA certificate ca.pem is self signed.
+2019-06-17T09:18:53.975660Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2019-06-17T09:18:53.979517Z 0 [Note] IPv6 is available.
+2019-06-17T09:18:53.979588Z 0 [Note]   - '::' resolves to '::';
+2019-06-17T09:18:53.981153Z 0 [Note] Server socket created on IP: '::'.
+2019-06-17T09:18:54.124706Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2019-06-17T09:18:54.184121Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:54.184241Z 0 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:54.184260Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:54.189260Z 0 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:54.189348Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:54.189746Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:54.241491Z 0 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:54.241599Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2019-06-17T09:18:54.471476Z 0 [Note] Event Scheduler: Loaded 0 events
+2019-06-17T09:18:54.471862Z 0 [Note] mysqld: ready for connections.
+Version: '5.7.25'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl logs blog-db-dep-654dfc76d9-n6vv5
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >docker kubectl exec blog-db-dep-654dfc76d9-n6vv5-blog-db-dep-654dfc76d9-n6vv5iblog-db-dep-654dfc76d9-n6vv5tblog-db-dep-654dfc76d9-n6vv5 blog-db-dep-654dfc76d9-n6vv5 mysql -uroot -ppawelcome-- 
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.25 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> exit
+Bye
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods -o wide
+NAME                           READY     STATUS    RESTARTS   AGE       IP            NODE
+blog-db-dep-654dfc76d9-n6vv5   1/1       Running   0          22m       172.17.0.14   minikube
+my-nginx                       1/1       Running   0          2h        172.17.0.16   minikube
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f blog\blog-ghost.yml 
+Error from server (BadRequest): error when creating "blog\\blog-ghost.yml": Deployment in version "v1beta1" cannot be handled as a Deployment: v1beta1.Deployment: Spec: v1beta1.DeploymentSpec: Template: v1.PodTemplateSpec: Spec: v1.PodSpec: Containers: []v1.Container: v1.Container: Env: []v1.EnvVar: v1.EnvVar: Value: ReadString: expects " or n, parsing 1242 ...,"value":3... at {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"extensions/v1beta1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"blog-ghost-dep\",\"namespace\":\"default\"},\"spec\":{\"replicas\":1,\"template\":{\"metadata\":{\"labels\":{\"app\":\"blog-ghost\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"database__client\",\"value\":\"mysql\"},{\"name\":\"database__connection__host\",\"value\":\"172.17.0.14\"},{\"name\":\"database__connection__port\",\"value\":3306},{\"name\":\"database__connection__user\",\"value\":\"root\"},{\"name\":\"database__connection__password\",\"value\":\"welcome\"},{\"name\":\"database__connection__database\",\"value\":\"ghost\"}],\"image\":\"ghost:1-alpine\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"ghost\",\"ports\":[{\"containerPort\":2368,\"name\":\"ghostport\"}]}]}}}}\n"},"name":"blog-ghost-dep","namespace":"default"},"spec":{"replicas":1,"template":{"metadata":{"labels":{"app":"blog-ghost"}},"spec":{"containers":[{"env":[{"name":"database__client","value":"mysql"},{"name":"database__connection__host","value":"172.17.0.14"},{"name":"database__connection__port","value":3306},{"name":"database__connection__user","value":"root"},{"name":"database__connection__password","value":"welcome"},{"name":"database__connection__database","value":"ghost"}],"image":"ghost:1-alpine","imagePullPolicy":"IfNotPresent","name":"ghost","ports":[{"containerPort":2368,"name":"ghostport"}]}]}}}}
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f blog\blog-ghost.yml 
+Error from server (BadRequest): error when creating "blog\\blog-ghost.yml": Deployment in version "v1beta1" cannot be handled as a Deployment: v1beta1.Deployment: Spec: v1beta1.DeploymentSpec: Template: v1.PodTemplateSpec: Spec: v1.PodSpec: Containers: []v1.Container: v1.Container: Env: []v1.EnvVar: v1.EnvVar: Value: ReadString: expects " or n, parsing 1413 ...,"value":3... at {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"extensions/v1beta1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"blog-ghost-dep\",\"namespace\":\"default\"},\"spec\":{\"replicas\":1,\"template\":{\"metadata\":{\"labels\":{\"app\":\"blog-ghost\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"database__client\",\"value\":\"mysql\"},{\"name\":\"database__connection__host\",\"value\":\"172.17.0.14\"},{\"name\":\"database__connection__user\",\"value\":\"root\"},{\"name\":\"database__connection__password\",\"value\":\"welcome\"},{\"name\":\"database__connection__database\",\"value\":\"ghost\"},{\"name\":\"database__connection__port\",\"value\":3306}],\"image\":\"ghost:1-alpine\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"ghost\",\"ports\":[{\"containerPort\":2368,\"name\":\"ghostport\"}]}]}}}}\n"},"name":"blog-ghost-dep","namespace":"default"},"spec":{"replicas":1,"template":{"metadata":{"labels":{"app":"blog-ghost"}},"spec":{"containers":[{"env":[{"name":"database__client","value":"mysql"},{"name":"database__connection__host","value":"172.17.0.14"},{"name":"database__connection__user","value":"root"},{"name":"database__connection__password","value":"welcome"},{"name":"database__connection__database","value":"ghost"},{"name":"database__connection__port","value":3306}],"image":"ghost:1-alpine","imagePullPolicy":"IfNotPresent","name":"ghost","ports":[{"containerPort":2368,"name":"ghostport"}]}]}}}}
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f blog\blog-ghost.yml 
+Error from server (BadRequest): error when creating "blog\\blog-ghost.yml": Deployment in version "v1beta1" cannot be handled as a Deployment: v1beta1.Deployment: Spec: v1beta1.DeploymentSpec: Template: v1.PodTemplateSpec: Spec: v1.PodSpec: Containers: []v1.Container: v1.Container: Env: []v1.EnvVar: v1.EnvVar: Value: ReadString: expects " or n, parsing 1413 ...,"value":4... at {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"extensions/v1beta1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"blog-ghost-dep\",\"namespace\":\"default\"},\"spec\":{\"replicas\":1,\"template\":{\"metadata\":{\"labels\":{\"app\":\"blog-ghost\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"database__client\",\"value\":\"mysql\"},{\"name\":\"database__connection__host\",\"value\":\"172.17.0.14\"},{\"name\":\"database__connection__user\",\"value\":\"root\"},{\"name\":\"database__connection__password\",\"value\":\"welcome\"},{\"name\":\"database__connection__database\",\"value\":\"ghost\"},{\"name\":\"database__connection__port\",\"value\":4306}],\"image\":\"ghost:1-alpine\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"ghost\",\"ports\":[{\"containerPort\":2368,\"name\":\"ghostport\"}]}]}}}}\n"},"name":"blog-ghost-dep","namespace":"default"},"spec":{"replicas":1,"template":{"metadata":{"labels":{"app":"blog-ghost"}},"spec":{"containers":[{"env":[{"name":"database__client","value":"mysql"},{"name":"database__connection__host","value":"172.17.0.14"},{"name":"database__connection__user","value":"root"},{"name":"database__connection__password","value":"welcome"},{"name":"database__connection__database","value":"ghost"},{"name":"database__connection__port","value":4306}],"image":"ghost:1-alpine","imagePullPolicy":"IfNotPresent","name":"ghost","ports":[{"containerPort":2368,"name":"ghostport"}]}]}}}}
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl apply -f blog\blog-ghost.yml 
+deployment "blog-ghost-dep" created
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl get pods
+NAME                              READY     STATUS    RESTARTS   AGE
+blog-db-dep-654dfc76d9-n6vv5      1/1       Running   0          29m
+blog-ghost-dep-5f5db4cbbb-dw2vv   1/1       Running   0          1m
+my-nginx                          1/1       Running   0          2h
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl logs blog-ghost-dep-5f5db4cbbb-dw2vv
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: posts
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: users
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: posts_authors
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: roles
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: roles_users
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: permissions
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: permissions_users
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: permissions_roles
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: permissions_apps
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: settings
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: tags
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: posts_tags
+[2019-06-17 09:43:26] [36mINFO[39m Creating table: apps
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: app_settings
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: app_fields
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: clients
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: client_trusted_domains
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: accesstokens
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: refreshtokens
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: subscribers
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: invites
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: brute
+[2019-06-17 09:43:27] [36mINFO[39m Creating table: webhooks
+[2019-06-17 09:43:27] [36mINFO[39m Model: Tag
+[2019-06-17 09:43:27] [36mINFO[39m Model: Client
+[2019-06-17 09:43:27] [36mINFO[39m Model: Role
+[2019-06-17 09:43:28] [36mINFO[39m Model: Permission
+[2019-06-17 09:43:30] [36mINFO[39m Model: User
+[2019-06-17 09:43:33] [36mINFO[39m Model: Post
+[2019-06-17 09:43:34] [36mINFO[39m Relation: Role to Permission
+[2019-06-17 09:43:34] [36mINFO[39m Relation: Post to Tag
+[2019-06-17 09:43:35] [36mINFO[39m Relation: User to Role
+[2019-06-17 09:43:35] [36mINFO[39m Finished database migration! 
+[2019-06-17 09:43:43] [35mWARN[39m Theme's file locales/en.json not found.
+[2019-06-17 09:43:46] [36mINFO[39m Ghost is running in production...
+[2019-06-17 09:43:46] [36mINFO[39m Your blog is now available on http://localhost:2368/
+[2019-06-17 09:43:46] [36mINFO[39m Ctrl+C to shut down
+[2019-06-17 09:43:46] [36mINFO[39m Ghost boot 10.839s
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl logs blog-ghost-dep-5f5db4cbbb-dw2vv
+get podsapply -f blog\blog-ghost.yml 
+get pods -o wide
+exec -it blog-db-dep-654dfc76d9-n6vv5 -- mysql -uroot -pwelcome
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 5.7.25 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> ku[K[Kshow databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| ghost              |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> exit
+Bye
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >kubectl exec -it blog-db-dep-654dfc76d9-n6vv5 -- mysql -uroot -pwelcome
+logs blog-ghost-dep-5f5db4cbbb-dw2vv
+get pods
+NAME                              READY     STATUS    RESTARTS   AGE
+blog-db-dep-654dfc76d9-n6vv5      1/1       Running   0          30m
+blog-ghost-dep-5f5db4cbbb-dw2vv   1/1       Running   0          2m
+my-nginx                          1/1       Running   0          2h
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >minikube stop
+There is a newer version of minikube available (v1.1.1).  Download it here:
+https://github.com/kubernetes/minikube/releases/tag/v1.1.1
+
+To disable this notification, run the following:
+minikube config set WantUpdateNotification false
+Stopping local Kubernetes cluster...
+Machine stopped.
+
+C:\Users\Dell lap\docker-workshop\jun15\can-jun15-dock-kube\k8s  
+CMD >
