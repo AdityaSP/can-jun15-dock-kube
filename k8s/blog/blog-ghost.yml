@@ -24,12 +24,20 @@ spec:
         - name: database__connection__port
           value: "8888"
         - name: database__connection__user
-          value: root
+          valueFrom:
+            configMapKeyRef:
+              name: blog-config
+              key: dbuser
         - name: database__connection__password
-          value: welcome
+          valueFrom:
+            secretKeyRef:
+              name: blog-secrets
+              key: db-password
         - name: database__connection__database
-          value: ghost
-          
+          valueFrom:
+            configMapKeyRef:
+              name: blog-config
+              key: db
 ---
 apiVersion: v1
 kind: Service

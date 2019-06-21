@@ -5,3 +5,4 @@ metadata:
 data:
   dbuser: root
   dbc: mysql
+  db: ghost

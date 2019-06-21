@@ -12,8 +12,8 @@ spec:
     spec:
       containers:
       - name: web
-        image: nginx
-#        imagePullPolicy: IfNotPresent
+        image: app
+        imagePullPolicy: IfNotPresent
         ports:
         - name: nginxport
           containerPort: 80
