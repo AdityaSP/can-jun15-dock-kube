@@ -1,0 +1,774 @@
+login as: vagrant
+vagrant@192.167.10.70's password:
+Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 4.4.0-131-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+140 packages can be updated.
+86 updates are security updates.
+
+
+Last login: Sat Jun 22 02:14:00 2019 from 192.167.10.1
+vagrant@k8smaster:~$
+vagrant@k8smaster:~$ ping k8snode1
+PING k8snode1 (192.167.10.71) 56(84) bytes of                                                   data.
+64 bytes from k8snode1 (192.167.10.71): icmp_s                                                  eq=1 ttl=64 time=0.399 ms
+64 bytes from k8snode1 (192.167.10.71): icmp_s                                                  eq=2 ttl=64 time=0.428 ms
+64 bytes from k8snode1 (192.167.10.71): icmp_s                                                  eq=3 ttl=64 time=0.536 ms
+^C
+--- k8snode1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet l                                                  oss, time 1999ms
+rtt min/avg/max/mdev = 0.399/0.454/0.536/0.061                                                   ms
+vagrant@k8smaster:~$ kubeadm reset
+[reset] WARNING: Changes made to this host by                                                   'kubeadm init' or 'kubeadm join' will be rever                                                  ted.
+[reset] Are you sure you want to proceed? [y/N                                                  ]: y
+[preflight] Running pre-flight checks
+[preflight] Some fatal errors occurred:
+        [ERROR IsPrivilegedUser]: user is not                                                   running as root
+[preflight] If you know what you are doing, yo                                                  u can make a check non-fatal with `--ignore-pr                                                  eflight-errors=...`
+vagrant@k8smaster:~$
+vagrant@k8smaster:~$ sudo su
+root@k8smaster:/home/vagrant# kubeadm reset
+[reset] Reading configuration from the cluster                                                  ...
+[reset] FYI: You can look at this config file                                                   with 'kubectl -n kube-system get cm kubeadm-co                                                  nfig -oyaml'
+[reset] WARNING: Changes made to this host by                                                   'kubeadm init' or 'kubeadm join' will be rever                                                  ted.
+[reset] Are you sure you want to proceed? [y/N                                                  ]: y
+[preflight] Running pre-flight checks
+[reset] Removing info for node "k8smaster" fro                                                  m the ConfigMap "kubeadm-config" in the "kube-                                                  system" Namespace
+W0622 05:41:32.300757   10790 reset.go:158] [r                                                  eset] failed to remove etcd member: error sync                                                  ing endpoints with etc: etcdclient: no availab                                                  le endpoints
+.Please manually remove this etcd member using                                                   etcdctl
+[reset] Stopping the kubelet service
+[reset] unmounting mounted directories in "/va                                                  r/lib/kubelet"
+[reset] Deleting contents of stateful director                                                  ies: [/var/lib/etcd /var/lib/kubelet /etc/cni/                                                  net.d /var/lib/dockershim /var/run/kubernetes]
+[reset] Deleting contents of config directorie                                                  s: [/etc/kubernetes/manifests /etc/kubernetes/                                                  pki]
+[reset] Deleting files: [/etc/kubernetes/admin                                                  .conf /etc/kubernetes/kubelet.conf /etc/kubern                                                  etes/bootstrap-kubelet.conf /etc/kubernetes/co                                                  ntroller-manager.conf /etc/kubernetes/schedule                                                  r.conf]
+
+The reset process does not reset or clean up i                                                  ptables rules or IPVS tables.
+If you wish to reset iptables, you must do so                                                   manually.
+For example:
+iptables -F && iptables -t nat -F && iptables                                                   -t mangle -F && iptables -X
+
+If your cluster was setup to utilize IPVS, run                                                   ipvsadm --clear (or similar)
+to reset your system's IPVS tables.
+
+root@k8smaster:/home/vagrant# iptables -F && i                                                  ptables -t nat -F && iptables -t mangle -F &&                                                   iptables -X
+root@k8smaster:/home/vagrant#
+root@k8smaster:/home/vagrant# cd /vagrant
+root@k8smaster:/vagrant# ls
+admin.conf  kube-installations.sh
+canal.yml   kube-master.sh
+config      readme.md
+config_old  Vagrantfile
+dep.yml
+root@k8smaster:/vagrant# ./kube-installations.                                                  sh
+installing docker
+Hit:1 http://archive.ubuntu.com/ubuntu xenial                                                   InRelease
+Get:3 http://archive.ubuntu.com/ubuntu xenial-                                                  updates InRelease [109 kB]
+Get:4 http://security.ubuntu.com/ubuntu xenial                                                  -security InRelease [109 kB]
+Get:5 http://archive.ubuntu.com/ubuntu xenial-                                                  backports InRelease [107 kB]
+Get:6 http://security.ubuntu.com/ubuntu xenial                                                  -security/main amd64 Packages [679 kB]
+Get:2 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial InRelease [8,993 B]
+Get:7 https://download.docker.com/linux/ubuntu                                                   xenial InRelease [66.2 kB]
+Ign:8 https://pkg.jenkins.io/debian-stable bin                                                  ary/ InRelease
+Get:9 http://archive.ubuntu.com/ubuntu xenial-                                                  updates/main amd64 Packages [976 kB]
+Hit:10 https://pkg.jenkins.io/debian-stable bi                                                  nary/ Release
+Get:11 https://packages.cloud.google.com/apt k                                                  ubernetes-xenial/main amd64 Packages [26.9 kB]
+Get:13 http://security.ubuntu.com/ubuntu xenia                                                  l-security/main i386 Packages [557 kB]
+Get:14 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/main i386 Packages [834 kB]
+Get:15 http://security.ubuntu.com/ubuntu xenia                                                  l-security/main Translation-en [272 kB]
+Get:16 http://security.ubuntu.com/ubuntu xenia                                                  l-security/universe amd64 Packages [440 kB]
+Get:17 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/main Translation-en [386 kB]
+Get:18 http://security.ubuntu.com/ubuntu xenia                                                  l-security/universe i386 Packages [382 kB]
+Get:19 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/universe amd64 Packages [752 kB]
+Get:20 http://security.ubuntu.com/ubuntu xenia                                                  l-security/universe Translation-en [179 kB]
+Get:21 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/universe i386 Packages [687 kB]
+Get:22 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/universe Translation-en [314 kB]
+Fetched 6,885 kB in 15s (431 kB/s)
+Reading package lists... Done
+N: Skipping acquire of configured file 'stable                                                  /binary-i386/Packages' as repository 'https://                                                  download.docker.com/linux/ubuntu xenial InRele                                                  ase' doesn't support architecture 'i386'
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+apt-transport-https is already the newest vers                                                  ion (1.2.32).
+ca-certificates is already the newest version                                                   (20170717~16.04.2).
+curl is already the newest version (7.47.0-1ub                                                  untu2.13).
+software-properties-common is already the newe                                                  st version (0.96.20.8).
+0 upgraded, 0 newly installed, 0 to remove and                                                   140 not upgraded.
+OK
+Hit:1 http://archive.ubuntu.com/ubuntu xenial                                                   InRelease
+Hit:2 http://security.ubuntu.com/ubuntu xenial                                                  -security InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu xenial-                                                  updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu xenial-                                                  backports InRelease
+Ign:5 https://pkg.jenkins.io/debian-stable bin                                                  ary/ InRelease
+Hit:6 https://pkg.jenkins.io/debian-stable bin                                                  ary/ Release
+Hit:8 https://download.docker.com/linux/ubuntu                                                   xenial InRelease
+Hit:9 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial InRelease
+Reading package lists... Done
+N: Skipping acquire of configured file 'stable                                                  /binary-i386/Packages' as repository 'https://                                                  download.docker.com/linux/ubuntu xenial InRele                                                  ase' doesn't support architecture 'i386'
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+docker-ce is already the newest version (17.03                                                  .3~ce-0~ubuntu-xenial).
+0 upgraded, 0 newly installed, 0 to remove and                                                   139 not upgraded.
+installing kubeadm and kubectl
+Hit:1 https://download.docker.com/linux/ubuntu                                                   xenial InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu xenial                                                   InRelease
+Hit:4 http://security.ubuntu.com/ubuntu xenial                                                  -security InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu xenial-                                                  updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu xenial-                                                  backports InRelease
+Ign:7 https://pkg.jenkins.io/debian-stable bin                                                  ary/ InRelease
+Hit:2 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial InRelease
+Hit:8 https://pkg.jenkins.io/debian-stable bin                                                  ary/ Release
+Reading package lists... Done
+N: Skipping acquire of configured file 'stable                                                  /binary-i386/Packages' as repository 'https://                                                  download.docker.com/linux/ubuntu xenial InRele                                                  ase' doesn't support architecture 'i386'
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+apt-transport-https is already the newest vers                                                  ion (1.2.32).
+0 upgraded, 0 newly installed, 0 to remove and                                                   140 not upgraded.
+OK
+Hit:2 https://download.docker.com/linux/ubuntu                                                   xenial InRelease
+Hit:3 http://security.ubuntu.com/ubuntu xenial                                                  -security InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu xenial                                                   InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu xenial-                                                  updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu xenial-                                                  backports InRelease
+Ign:7 https://pkg.jenkins.io/debian-stable bin                                                  ary/ InRelease
+Hit:1 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial InRelease
+Hit:8 https://pkg.jenkins.io/debian-stable bin                                                  ary/ Release
+Reading package lists... Done
+N: Skipping acquire of configured file 'stable                                                  /binary-i386/Packages' as repository 'https://                                                  download.docker.com/linux/ubuntu xenial InRele                                                  ase' doesn't support architecture 'i386'
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages will be upgraded:
+  kubeadm kubectl kubelet
+3 upgraded, 0 newly installed, 0 to remove and                                                   137 not upgraded.
+Need to get 37.2 MB of archives.
+After this operation, 7,943 kB disk space will                                                   be freed.
+Get:1 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial/main amd64 kubelet amd64 1.15.                                                  0-00 [20.2 MB]
+Get:2 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial/main amd64 kubectl amd64 1.15.                                                  0-00 [8,763 kB]
+Get:3 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial/main amd64 kubeadm amd64 1.15.                                                  0-00 [8,246 kB]
+Fetched 37.2 MB in 38s (979 kB/s)
+(Reading database ... 42177 files and director                                                  ies currently installed.)
+Preparing to unpack .../kubelet_1.15.0-00_amd6                                                  4.deb ...
+Unpacking kubelet (1.15.0-00) over (1.14.3-00)                                                   ...
+Preparing to unpack .../kubectl_1.15.0-00_amd6                                                  4.deb ...
+Unpacking kubectl (1.15.0-00) over (1.14.3-00)                                                   ...
+Preparing to unpack .../kubeadm_1.15.0-00_amd6                                                  4.deb ...
+Unpacking kubeadm (1.15.0-00) over (1.14.3-00)                                                   ...
+Setting up kubelet (1.15.0-00) ...
+Setting up kubectl (1.15.0-00) ...
+Setting up kubeadm (1.15.0-00) ...
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# docker container ls
+CONTAINER ID        IMAGE               COMMAN                                                  D             CREATED             STATUS                                                                PORTS               NAMES
+root@k8smaster:/vagrant# dos2unix
+^C
+root@k8smaster:/vagrant# apt-get install dos2u                                                  nix
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+dos2unix is already the newest version (6.0.4-                                                  1).
+0 upgraded, 0 newly installed, 0 to remove and                                                   137 not upgraded.
+root@k8smaster:/vagrant# ls
+admin.conf  kube-installations.sh
+canal.yml   kube-master.sh
+config      readme.md
+config_old  Vagrantfile
+dep.yml
+root@k8smaster:/vagrant# dos2unix canal.yml
+dos2unix: converting file canal.yml to Unix fo                                                  rmat ...
+root@k8smaster:/vagrant# dos2unix .
+dos2unix: Skipping ., not a regular file.
+root@k8smaster:/vagrant# dos2unix *
+dos2unix: converting file admin.conf to Unix f                                                  ormat ...
+dos2unix: converting file canal.yml to Unix fo                                                  rmat ...
+dos2unix: converting file config to Unix forma                                                  t ...
+dos2unix: converting file config_old to Unix f                                                  ormat ...
+dos2unix: converting file dep.yml to Unix form                                                  at ...
+dos2unix: converting file kube-installations.s                                                  h to Unix format ...
+dos2unix: converting file kube-master.sh to Un                                                  ix format ...
+dos2unix: converting file readme.md to Unix fo                                                  rmat ...
+dos2unix: converting file Vagrantfile to Unix                                                   format ...
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# ifconfig
+docker0   Link encap:Ethernet  HWaddr 02:42:3f                                                  :b0:ba:89
+          inet addr:172.17.0.1  Bcast:0.0.0.0                                                    Mask:255.255.0.0
+          UP BROADCAST MULTICAST  MTU:1500  Me                                                  tric:1
+          RX packets:0 errors:0 dropped:0 over                                                  runs:0 frame:0
+          TX packets:0 errors:0 dropped:0 over                                                  runs:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0                                                   B)
+
+eth0      Link encap:Ethernet  HWaddr 08:00:27                                                  :ee:87:c4
+          inet addr:10.0.2.15  Bcast:10.0.2.25                                                  5  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:feee:87c4                                                  /64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:                                                  1500  Metric:1
+          RX packets:35416 errors:0 dropped:0                                                   overruns:0 frame:0
+          TX packets:12892 errors:0 dropped:0                                                   overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:46854131 (46.8 MB)  TX byte                                                  s:862670 (862.6 KB)
+
+eth1      Link encap:Ethernet  HWaddr 08:00:27                                                  :2e:0e:45
+          inet addr:192.167.10.70  Bcast:192.1                                                  67.10.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fe2e:e45/                                                  64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:                                                  1500  Metric:1
+          RX packets:6547 errors:0 dropped:0 o                                                  verruns:0 frame:0
+          TX packets:7587 errors:0 dropped:0 o                                                  verruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:642908 (642.9 KB)  TX bytes                                                  :4632600 (4.6 MB)
+
+flannel.1 Link encap:Ethernet  HWaddr 86:a9:72                                                  :33:ec:2c
+          inet addr:192.168.0.0  Bcast:0.0.0.0                                                    Mask:255.255.255.255
+          inet6 addr: fe80::84a9:72ff:fe33:ec2                                                  c/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:                                                  1450  Metric:1
+          RX packets:0 errors:0 dropped:0 over                                                  runs:0 frame:0
+          TX packets:0 errors:0 dropped:8 over                                                  runs:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0                                                   B)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metr                                                  ic:1
+          RX packets:162116 errors:0 dropped:0                                                   overruns:0 frame:0
+          TX packets:162116 errors:0 dropped:0                                                   overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:41209102 (41.2 MB)  TX byte                                                  s:41209102 (41.2 MB)
+
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# ifconfig
+docker0   Link encap:Ethernet  HWaddr 02:42:3f:b0:ba:89
+          inet addr:172.17.0.1  Bcast:0.0.0.0  Mask:255.255.0.0
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+eth0      Link encap:Ethernet  HWaddr 08:00:27:ee:87:c4
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:feee:87c4/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:35416 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:12892 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:46854131 (46.8 MB)  TX bytes:862670 (862.6 KB)
+
+eth1      Link encap:Ethernet  HWaddr 08:00:27:2e:0e:45
+          inet addr:192.167.10.70  Bcast:192.167.10.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fe2e:e45/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:6571 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:7605 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:645002 (645.0 KB)  TX bytes:4637008 (4.6 MB)
+
+flannel.1 Link encap:Ethernet  HWaddr 86:a9:72:33:ec:2c
+          inet addr:192.168.0.0  Bcast:0.0.0.0  Mask:255.255.255.255
+          inet6 addr: fe80::84a9:72ff:fe33:ec2c/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1450  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:8 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:162116 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:162116 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:41209102 (41.2 MB)  TX bytes:41209102 (41.2 MB)
+
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=192.167.10.70
+[init] Using Kubernetes version: v1.15.0
+[preflight] Running pre-flight checks
+        [WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Activating the kubelet service
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [k8smaster kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 192.167.10.70]
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [k8smaster localhost] and IPs [192.167.10.70 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [k8smaster localhost] and IPs [192.167.10.70 127.0.0.1 ::1]
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
+[kubelet-check] Initial timeout of 40s passed.
+[apiclient] All control plane components are healthy after 41.004219 seconds
+[upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config-1.15" in namespace kube-system with the configuration for the kubelets in the cluster
+[upload-certs] Skipping phase. Please see --upload-certs
+[mark-control-plane] Marking the node k8smaster as control-plane by adding the label "node-role.kubernetes.io/master=''"
+[mark-control-plane] Marking the node k8smaster as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]
+[bootstrap-token] Using token: ai1071.5p0x4ntf4c2dl6od
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.167.10.70:6443 --token ai1071.5p0x4ntf4c2dl6od \
+    --discovery-token-ca-cert-hash sha256:27b7dfeeedfb20f439cd5ed1c6c25e3ca7110c8337ba34bdb16bc2c66275c771
+root@k8smaster:/vagrant# mkdir -p $HOME/.kube
+root@k8smaster:/vagrant#   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+cp: overwrite '/root/.kube/config'? y
+root@k8smaster:/vagrant#   sudo chown $(id -u):$(id -g) $HOME/.kube/config
+root@k8smaster:/vagrant# id -u
+0
+root@k8smaster:/vagrant# id -g
+0
+root@k8smaster:/vagrant# ls -ltra $HOME/.kube/config
+-rw------- 1 root root 5453 Jun 22 06:12 /root/.kube/config
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# kubectl version
+Client Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.0", GitCommit:"e8462b5b5dc2584fdcd18e6bcfe9f1e4d970a529", GitTreeState:"clean", BuildDate:"2019-06-19T16:40:16Z", GoVersion:"go1.12.5", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.0", GitCommit:"e8462b5b5dc2584fdcd18e6bcfe9f1e4d970a529", GitTreeState:"clean", BuildDate:"2019-06-19T16:32:14Z", GoVersion:"go1.12.5", Compiler:"gc", Platform:"linux/amd64"}
+root@k8smaster:/vagrant# ps -ef | grep api
+root     14376 14358  6 06:02 ?        00:00:58 kube-apiserver --advertise-address=192.167.10.70 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379 --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group --requestheader-username-headers=X-Remote-User --secure-port=6443 --service-account-key-file=/etc/kubernetes/pki/sa.pub --service-cluster-ip-range=10.96.0.0/12 --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+root     17868 10631  0 06:17 pts/0    00:00:00 grep --color=auto api
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# kubectl get nodes
+NAME        STATUS     ROLES    AGE   VERSION
+k8smaster   NotReady   master   16m   v1.15.0
+root@k8smaster:/vagrant# kubectl get nodes
+NAME        STATUS     ROLES    AGE   VERSION
+k8smaster   NotReady   master   20m   v1.15.0
+k8snode1    NotReady   <none>   42s   v1.15.0
+root@k8smaster:/vagrant# kubectl get nodes
+NAME        STATUS     ROLES    AGE     VERSION
+k8smaster   NotReady   master   29m     v1.15.0
+k8snode1    NotReady   <none>   9m40s   v1.15.0
+root@k8smaster:/vagrant# echo 27b7dfeeedfb20f439cd5ed1c6c25e3ca7110c8337ba34bdb16bc2c66275c771
+27b7dfeeedfb20f439cd5ed1c6c25e3ca7110c8337ba34bdb16bc2c66275c771
+root@k8smaster:/vagrant# echo 27b7dfeeedfb20f439cd5ed1c6c25e3ca7110c8337ba34bdb16bc2c66275c771 | wc -c
+65
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# kubectl get pods
+No resources found.
+root@k8smaster:/vagrant# kubectl get pods -n kube-system
+NAME                                READY   STATUS    RESTARTS   AGE
+coredns-5c98db65d4-4qd9c            0/1     Pending   0          33m
+coredns-5c98db65d4-rctlf            0/1     Pending   0          33m
+etcd-k8smaster                      1/1     Running   0          32m
+kube-apiserver-k8smaster            1/1     Running   0          32m
+kube-controller-manager-k8smaster   1/1     Running   0          32m
+kube-proxy-v9bcx                    1/1     Running   0          13m
+kube-proxy-vxnh7                    1/1     Running   0          33m
+kube-scheduler-k8smaster            1/1     Running   0          32m
+root@k8smaster:/vagrant# kubectl get pods -n kube-system -o wide
+NAME                                READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+coredns-5c98db65d4-4qd9c            0/1     Pending   0          34m   <none>          <none>      <none>           <none>
+coredns-5c98db65d4-rctlf            0/1     Pending   0          34m   <none>          <none>      <none>           <none>
+etcd-k8smaster                      1/1     Running   0          33m   192.167.10.70   k8smaster   <none>           <none>
+kube-apiserver-k8smaster            1/1     Running   0          33m   192.167.10.70   k8smaster   <none>           <none>
+kube-controller-manager-k8smaster   1/1     Running   0          33m   192.167.10.70   k8smaster   <none>           <none>
+kube-proxy-v9bcx                    1/1     Running   0          14m   192.167.10.71   k8snode1    <none>           <none>
+kube-proxy-vxnh7                    1/1     Running   0          34m   192.167.10.70   k8smaster   <none>           <none>
+kube-scheduler-k8smaster            1/1     Running   0          33m   192.167.10.70   k8smaster   <none>           <none>
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# kubectl get pods -n kube-system -o wide
+NAME                                READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+coredns-5c98db65d4-4qd9c            0/1     Pending   0          35m   <none>          <none>      <none>           <none>
+coredns-5c98db65d4-rctlf            0/1     Pending   0          35m   <none>          <none>      <none>           <none>
+etcd-k8smaster                      1/1     Running   0          35m   192.167.10.70   k8smaster   <none>           <none>
+kube-apiserver-k8smaster            1/1     Running   0          35m   192.167.10.70   k8smaster   <none>           <none>
+kube-controller-manager-k8smaster   1/1     Running   0          35m   192.167.10.70   k8smaster   <none>           <none>
+kube-proxy-v9bcx                    1/1     Running   0          16m   192.167.10.71   k8snode1    <none>           <none>
+kube-proxy-vxnh7                    1/1     Running   0          35m   192.167.10.70   k8smaster   <none>           <none>
+kube-scheduler-k8smaster            1/1     Running   0          35m   192.167.10.70   k8smaster   <none>           <none>
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# vi canal.yml
+root@k8smaster:/vagrant# kubectl apply -f rbac.yml
+error: the path "rbac.yml" does not exist
+root@k8smaster:/vagrant# ls
+admin.conf  config      dep.yml                kube-master.sh  Vagrantfile
+canal.yml   config_old  kube-installations.sh  readme.md
+root@k8smaster:/vagrant# kubectl apply -f rbac.yml
+clusterrole.rbac.authorization.k8s.io/calico created
+clusterrole.rbac.authorization.k8s.io/flannel created
+clusterrolebinding.rbac.authorization.k8s.io/canal-flannel created
+clusterrolebinding.rbac.authorization.k8s.io/canal-calico created
+root@k8smaster:/vagrant# kubectl apply -f canal.yml
+configmap/canal-config created
+daemonset.extensions/canal created
+customresourcedefinition.apiextensions.k8s.io/felixconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/bgpconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ippools.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/clusterinformations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworksets.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/hostendpoints.crd.projectcalico.org created
+serviceaccount/canal created
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# kubectl get pods -n kube-system
+NAME                                READY   STATUS    RESTARTS   AGE
+canal-6mfzr                         3/3     Running   0          80s
+canal-k88df                         3/3     Running   0          80s
+coredns-5c98db65d4-4qd9c            1/1     Running   0          42m
+coredns-5c98db65d4-rctlf            1/1     Running   0          42m
+etcd-k8smaster                      1/1     Running   0          41m
+kube-apiserver-k8smaster            1/1     Running   0          41m
+kube-controller-manager-k8smaster   1/1     Running   0          41m
+kube-proxy-v9bcx                    1/1     Running   0          22m
+kube-proxy-vxnh7                    1/1     Running   0          42m
+kube-scheduler-k8smaster            1/1     Running   0          41m
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# kubectl get nodes
+NAME        STATUS   ROLES    AGE   VERSION
+k8smaster   Ready    master   51m   v1.15.0
+k8snode1    Ready    <none>   30m   v1.15.0
+root@k8smaster:/vagrant# cd
+root@k8smaster:~# cd -
+/vagrant
+root@k8smaster:/vagrant# cd ~/.kube/
+root@k8smaster:~/.kube# ls
+cache  config  http-cache
+root@k8smaster:~/.kube# cp config /vagrant/
+root@k8smaster:~/.kube#
+root@k8smaster:~/.kube# openssl x509 -in /etc/kubernetes/pki/ca.crt -noout -pubkey | openssl rsa -pubin -outform DER 2>/dev/null | sha256sum | cut -d' ' -f1
+27b7dfeeedfb20f439cd5ed1c6c25e3ca7110c8337ba34bdb16bc2c66275c771
+root@k8smaster:~/.kube#
+root@k8smaster:~/.kube# cd /vagrant
+root@k8smaster:/vagrant# ls
+admin.conf  config      dep.yml                kube-master.sh  readme.md
+canal.yml   config_old  kube-installations.sh  rbac.yml        Vagrantfile
+root@k8smaster:/vagrant# echo KUBECONFIG
+KUBECONFIG
+root@k8smaster:/vagrant# export KUBECON=ua.config
+root@k8smaster:/vagrant# ls
+admin.conf         canal.yml  config_old  kube-installations.sh  rbac.yml   Vagrantfile
+build-machine.tar  config     dep.yml     kube-master.sh         readme.md
+root@k8smaster:/vagrant# docker image ls build-machine
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+root@k8smaster:/vagrant# docker image load -i build-machine.tar
+f715ed19c28b: Loading layer 105.5 MB/105.5 MB
+8bb25f9cdc41: Loading layer 23.99 MB/23.99 MB
+08a01612ffca: Loading layer 7.994 MB/7.994 MB
+1191b3f5862a: Loading layer 146.4 MB/146.4 MB
+097524d80f54: Loading layer 2.332 MB/2.332 MB
+685f72a7cd4f: Loading layer 3.584 kB/3.584 kB
+9c147c576d67: Loading layer 1.536 kB/1.536 kB
+4fbf445e0074: Loading layer 356.3 MB/356.3 MB
+f8d2b3161911: Loading layer 362.5 kB/362.5 kB
+3df167488826: Loading layer 1.698 MB/1.698 MB
+1d0c6a7b3899: Loading layer 338.9 kB/338.9 kB
+70a645d2e501: Loading layer 3.584 kB/3.584 kB
+3c00f81d75b5: Loading layer 9.728 kB/9.728 kB
+d428855b454d: Loading layer 868.9 kB/868.9 kB
+8804a63fa7a7: Loading layer 4.608 kB/4.608 kB
+c578212ecb8e: Loading layer 75.74 MB/75.74 MB
+8a7f14746e9e: Loading layer 4.608 kB/4.608 kB
+eeb965ebc126: Loading layer 9.216 kB/9.216 kB
+9a871687c1f2: Loading layer 4.608 kB/4.608 kB
+919d76ee5fb9: Loading layer 3.072 kB/3.072 kB
+cfa454ff6840: Loading layer 7.168 kB/7.168 kB
+100a3c509c52: Loading layer 12.29 kB/12.29 kB
+286c95d86718: Loading layer 151.3 MB/151.3 MB
+e8c439648eb2: Loading layer   302 MB/302 MB
+ebe514bfbccc: Loading layer 11.78 kB/11.78 kB
+Loaded image: build-machine:1
+f94641f1fe1f: Loading layer 105.5 MB/105.5 MB
+ec62f19bb3aa: Loading layer 24.08 MB/24.08 MB
+2c719774c1e1: Loading layer 8.005 MB/8.005 MB
+4230ff7f2288: Loading layer 146.4 MB/146.4 MB
+3e4107bb54ad: Loading layer 10.09 MB/10.09 MB
+a3e9c8cfc64e: Loading layer 3.584 kB/3.584 kB
+dbd11d0fda83: Loading layer 205.4 MB/205.4 MB
+e9c4ce09e344: Loading layer 338.9 kB/338.9 kB
+57bde71ea3f9: Loading layer 3.584 kB/3.584 kB
+0c2ab7041871: Loading layer 9.728 kB/9.728 kB
+10f6ed2c8c7e: Loading layer 868.9 kB/868.9 kB
+c0d8d5367bbc: Loading layer 77.28 MB/77.28 MB
+499f3565f0eb: Loading layer 3.584 kB/3.584 kB
+975bd8bb0130: Loading layer 9.728 kB/9.728 kB
+f72ec622b4a1: Loading layer  5.12 kB/5.12 kB
+b9b7e0ccc191: Loading layer 3.072 kB/3.072 kB
+2ed34a36a9a2: Loading layer 7.168 kB/7.168 kB
+862374a84698: Loading layer  12.8 kB/12.8 kB
+5cd2049f5db8: Loading layer 187.5 MB/187.5 MB
+57deae187723: Loading layer 6.144 kB/6.144 kB
+8678225bbdbd: Loading layer 17.41 kB/17.41 kB
+8734da542ca6: Loading layer 289.1 MB/289.1 MB
+db678788aea1: Loading layer 11.78 kB/11.78 kB
+Loaded image: build-machine:2
+Loaded image: build-machine:latest
+root@k8smaster:/vagrant# docker image ls build-machine
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+build-machine       2                   f06bdf6d4580        5 hours ago         1.02 GB
+build-machine       latest              f06bdf6d4580        5 hours ago         1.02 GB
+build-machine       1                   e932b627ba5e        5 days ago          1.14 GB
+root@k8smaster:/vagrant# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="16.04.5 LTS (Xenial Xerus)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 16.04.5 LTS"
+VERSION_ID="16.04"
+HOME_URL="http://www.ubuntu.com/"
+SUPPORT_URL="http://help.ubuntu.com/"
+BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+VERSION_CODENAME=xenial
+UBUNTU_CODENAME=xenial
+root@k8smaster:/vagrant#
+root@k8smaster:/vagrant# ls
+admin.conf         canal.yml   dep.yml                rbac.yml
+app-machine        config      kube-installations.sh  readme.md
+build-machine.tar  config_old  kube-master.sh         Vagrantfile
+root@k8smaster:/vagrant# cd app-machine/
+root@k8smaster:/vagrant/app-machine#
+root@k8smaster:/vagrant/app-machine# ls
+Dockerfile
+root@k8smaster:/vagrant/app-machine# docker image ls build-machine:2
+REPOSITORY          TAG                 IMAGE ID            CREATED                             SIZE
+build-machine       2                   f06bdf6d4580        6 hours ago                         1.02 GB
+root@k8smaster:/vagrant/app-machine# apt-get install maven
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  ant ant-optional junit junit4 libaopalliance-java libapache-pom-java
+  libasm4-java libatinject-jsr330-api-java libbsh-java libcdi-api-java
+  libcglib3-java libclassworlds-java libcommons-cli-java libcommons-codec-java
+  libcommons-httpclient-java libcommons-io-java libcommons-lang-java
+  libcommons-lang3-java libcommons-logging-java libcommons-net-java
+  libcommons-net2-java libcommons-parent-java libdom4j-java libdoxia-core-java
+  libeasymock-java libeclipse-aether-java
+  libgeronimo-interceptor-3.0-spec-java libguava-java libguice-java
+  libhamcrest-java libhttpclient-java libhttpcore-java libjaxen-java
+  libjaxp1.3-java libjdom1-java libjetty-java libjsch-java libjsoup-java
+  libjsr305-java liblog4j1.2-java libmaven-parent-java libmaven2-core-java
+  libmaven3-core-java libobjenesis-java libplexus-ant-factory-java
+  libplexus-archiver-java libplexus-bsh-factory-java libplexus-cipher-java
+  libplexus-classworlds-java libplexus-classworlds2-java libplexus-cli-java
+  libplexus-component-annotations-java libplexus-component-metadata-java
+  libplexus-container-default-java libplexus-container-default1.5-java
+  libplexus-containers-java libplexus-containers1.5-java
+  libplexus-interactivity-api-java libplexus-interpolation-java
+  libplexus-io-java libplexus-sec-dispatcher-java libplexus-utils-java
+  libplexus-utils2-java libqdox2-java libservlet2.5-java libservlet3.1-java
+  libsisu-inject-java libsisu-plexus-java libslf4j-java libwagon-java
+  libwagon2-java libxalan2-java libxbean-java libxerces2-java
+  libxml-commons-external-java libxml-commons-resolver1.1-java libxom-java
+  libxpp2-java libxpp3-java
+Suggested packages:
+  ant-doc ant-gcj ant-optional-gcj antlr javacc jython libbcel-java
+  libbsf-java libgnumail-java libjdepend-java liboro-java libregexp-java
+  junit-doc libaopalliance-java-doc libatinject-jsr330-api-java-doc
+  libclassworlds-java-doc libcommons-httpclient-java-doc
+  libcommons-io-java-doc libcommons-lang-java-doc libcommons-lang3-java-doc
+  libavalon-framework-java libcommons-logging-java-doc
+  libexcalibur-logkit-java libcommons-net-java-doc libcommons-net2-java-doc
+  libdom4j-java-doc libeasymock-java-doc libcglib-java libjaxp1.3-java-gcj
+  libjdom1-java-doc jetty libjetty-java-doc libjsoup-java-doc
+  libjsr305-java-doc liblog4j1.2-java-doc libobjenesis-java-doc
+  libplexus-cipher-java-doc libplexus-classworlds-java-doc
+  libplexus-classworlds2-java-doc libplexus-cli-java-doc
+  libplexus-container-default-java-doc libplexus-interactivity-api-java-doc
+  libplexus-interpolation-java-doc libplexus-sec-dispatcher-java-doc
+  libplexus-utils-java-doc libplexus-utils2-java-doc libqdox2-java-doc testng
+  libwagon-java-doc libxalan2-java-doc libxsltc-java groovy2
+  libequinox-osgi-java libosgi-compendium-java libosgi-core-java libqdox-java
+  libspring-beans-java libspring-context-java libspring-core-java
+  libspring-web-java libxerces2-java-doc libxerces2-java-gcj
+  libxml-commons-resolver1.1-java-doc libxom-java-doc
+The following NEW packages will be installed:
+  ant ant-optional junit junit4 libaopalliance-java libapache-pom-java
+  libasm4-java libatinject-jsr330-api-java libbsh-java libcdi-api-java
+  libcglib3-java libclassworlds-java libcommons-cli-java libcommons-codec-java
+  libcommons-httpclient-java libcommons-io-java libcommons-lang-java
+  libcommons-lang3-java libcommons-logging-java libcommons-net-java
+  libcommons-net2-java libcommons-parent-java libdom4j-java libdoxia-core-java
+  libeasymock-java libeclipse-aether-java
+  libgeronimo-interceptor-3.0-spec-java libguava-java libguice-java
+  libhamcrest-java libhttpclient-java libhttpcore-java libjaxen-java
+  libjaxp1.3-java libjdom1-java libjetty-java libjsch-java libjsoup-java
+  libjsr305-java liblog4j1.2-java libmaven-parent-java libmaven2-core-java
+  libmaven3-core-java libobjenesis-java libplexus-ant-factory-java
+  libplexus-archiver-java libplexus-bsh-factory-java libplexus-cipher-java
+  libplexus-classworlds-java libplexus-classworlds2-java libplexus-cli-java
+  libplexus-component-annotations-java libplexus-component-metadata-java
+  libplexus-container-default-java libplexus-container-default1.5-java
+  libplexus-containers-java libplexus-containers1.5-java
+  libplexus-interactivity-api-java libplexus-interpolation-java
+  libplexus-io-java libplexus-sec-dispatcher-java libplexus-utils-java
+  libplexus-utils2-java libqdox2-java libservlet2.5-java libservlet3.1-java
+  libsisu-inject-java libsisu-plexus-java libslf4j-java libwagon-java
+  libwagon2-java libxalan2-java libxbean-java libxerces2-java
+  libxml-commons-external-java libxml-commons-resolver1.1-java libxom-java
+  libxpp2-java libxpp3-java maven
+0 upgraded, 80 newly installed, 0 to remove and 137 not upgraded.
+Need to get 28.0 MB of archives.
+After this operation, 39.4 MB of additional disk space will be used.
+Do you want to continue? [Y/n] n
+Abort.
+root@k8smaster:/vagrant/app-machine# vi Dockerfile
+root@k8smaster:/vagrant/app-machine#
+root@k8smaster:/vagrant/app-machine# ls
+Dockerfile
+root@k8smaster:/vagrant/app-machine# cat Dockerfile
+FROM build-machine:2
+RUN apt-get update && apt-get install git curl maven
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && mv kubectl /bin
+
+
+
+root@k8smaster:/vagrant/app-machine# vi Dockerfile
+root@k8smaster:/vagrant/app-machine#
+root@k8smaster:/vagrant/app-machine# cat Dockerfile
+FROM build-machine:2
+RUN apt-get update && apt-get install -y git curl maven
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && mv kubectl /bin
+root@k8smaster:/vagrant/app-machine# docker image build -t app-machine .
+Sending build context to Docker daemon 2.048 kB
+Step 1/3 : FROM build-machine:2
+ ---> f06bdf6d4580
+Step 2/3 : RUN apt-get update && apt-get install -y git curl maven
+ ---> Running in 58a97ed281fc
+Err:1 https://download.docker.com/linux/debian stretch InRelease
+  Could not resolve host: download.docker.com
+Err:2 http://deb.debian.org/debian stretch InRelease
+  Temporary failure resolving 'deb.debian.org'
+Err:3 http://security.debian.org/debian-security stretch/updates InRelease
+  Temporary failure resolving 'security.debian.org'
+^C
+root@k8smaster:/vagrant/app-machine#
+root@k8smaster:/vagrant/app-machine# ping google.com
+PING google.com (172.217.31.206) 56(84) bytes of data.
+64 bytes from maa03s28-in-f14.1e100.net (172.217.31.206): icmp_seq=1 ttl=54 time=66.2 ms
+64 bytes from maa03s28-in-f14.1e100.net (172.217.31.206): icmp_seq=2 ttl=54 time=61.2 ms
+^C
+--- google.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 61.218/63.740/66.263/2.535 ms
+root@k8smaster:/vagrant/app-machine# docker image build -t app-machine .
+Sending build context to Docker daemon 2.048 kB
+Step 1/3 : FROM build-machine:2
+ ---> f06bdf6d4580
+Step 2/3 : RUN apt-get update && apt-get install -y git curl maven
+ ---> Running in 5e2ce6d6790c
+Err:1 https://download.docker.com/linux/debian stretch InRelease
+  Could not resolve host: download.docker.com
+Err:2 http://deb.debian.org/debian stretch InRelease
+  Temporary failure resolving 'deb.debian.org'
+Err:3 http://security.debian.org/debian-security stretch/updates InRelease
+  Temporary failure resolving 'security.debian.org'
+^C
+root@k8smaster:/vagrant/app-machine# ping google.com
+PING google.com (172.217.31.206) 56(84) bytes of data.
+64 bytes from maa03s28-in-f14.1e100.net (172.217.31.206): icmp_seq=1 ttl=53 time=28.2 ms
+64 bytes from maa03s28-in-f14.1e100.net (172.217.31.206): icmp_seq=2 ttl=53 time=60.2 ms
+^C
+--- google.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1000ms
+rtt min/avg/max/mdev = 28.231/44.253/60.275/16.022 ms
+root@k8smaster:/vagrant/app-machine#
+root@k8smaster:/vagrant/app-machine# docker image build -t app-machine .
+Sending build context to Docker daemon 2.048 kB
+Step 1/3 : FROM build-machine:2
+ ---> f06bdf6d4580
+Step 2/3 : RUN apt-get update && apt-get install -y git curl maven
+ ---> Running in d86ef9c15f62
+Err:1 https://download.docker.com/linux/debian stretch InRelease
+  Could not resolve host: download.docker.com
+^C
+root@k8smaster:/vagrant/app-machine# ping download.docker.com
+PING d2h67oheeuigaw.cloudfront.net (13.249.255.20) 56(84) bytes of data.
+64 bytes from server-13-249-255-20.hyd50.r.cloudfront.net (13.249.255.20): icmp_seq=1 ttl=243 time=53.2 ms
+64 bytes from server-13-249-255-20.hyd50.r.cloudfront.net (13.249.255.20): icmp_seq=2 ttl=243 time=69.0 ms
+^C
+--- d2h67oheeuigaw.cloudfront.net ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 53.214/61.118/69.022/7.904 ms
+root@k8smaster:/vagrant/app-machine# docker container run -it build-machine bash
+root@7f1670955fce:/# apt-get update
+Err:1 https://download.docker.com/linux/debian stretch InRelease
+  Could not resolve host: download.docker.com
+0% [Connecting to deb.debian.org] [Connecting to security.debian.org]^C
+root@7f1670955fce:/# ping google.com
+^C
+root@7f1670955fce:/# cat /etc/resolv.conf
+# Dynamic resolv.conf(5) file for glibc resolver(3) generated by resolvconf(8)
+#     DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+nameserver 10.0.2.3
+root@7f1670955fce:/#
+root@7f1670955fce:/# ls
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+root@7f1670955fce:/# ping 192.167.10.70
+PING 192.167.10.70 (192.167.10.70) 56(84) bytes of data.
+64 bytes from 192.167.10.70: icmp_seq=1 ttl=64 time=0.244 ms
+64 bytes from 192.167.10.70: icmp_seq=2 ttl=64 time=0.109 ms
+^C
+--- 192.167.10.70 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.109/0.176/0.244/0.068 ms
+root@7f1670955fce:/# ping google.com
+^C
+root@7f1670955fce:/# exit
+exit
+root@k8smaster:/vagrant/app-machine#
+root@k8smaster:/vagrant/app-machine# docker container run -it build-machine bash
+root@885f301864b2:/# ping google.com
+^C
+root@885f301864b2:/# cat /etc/resolv.conf
+# Dynamic resolv.conf(5) file for glibc resolver(3) generated by resolvconf(8)
+#     DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+nameserver 10.0.2.3
+root@885f301864b2:/# ping 10.0.2.3
+PING 10.0.2.3 (10.0.2.3) 56(84) bytes of data.
+^C
+--- 10.0.2.3 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2016ms
+
+root@885f301864b2:/# exit
+exit
+root@k8smaster:/vagrant/app-machine# cat /etc/resolv.conf
+# Dynamic resolv.conf(5) file for glibc resolver(3) generated by resolvconf(8)
+#     DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+nameserver 10.0.2.3
+root@k8smaster:/vagrant/app-machine#
