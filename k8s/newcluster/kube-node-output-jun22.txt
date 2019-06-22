@@ -1,0 +1,447 @@
+login as: vagrant
+vagrant@192.167.10.71's password:
+Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 4.4.0                                                  -131-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical                                                  .com
+ * Support:        https://ubuntu.com/advantag                                                  e
+
+132 packages can be updated.
+79 updates are security updates.
+
+
+Last login: Fri Jun 14 05:21:52 2019 from 192.                                                  167.10.1
+vagrant@k8snode1:~$
+vagrant@k8snode1:~$ ping k8smaster
+PING k8smaster (192.167.10.70) 56(84) bytes of                                                   data.
+64 bytes from k8smaster (192.167.10.70): icmp_                                                  seq=1 ttl=64 time=0.328 ms
+64 bytes from k8smaster (192.167.10.70): icmp_                                                  seq=2 ttl=64 time=0.316 ms
+64 bytes from k8smaster (192.167.10.70): icmp_                                                  seq=3 ttl=64 time=0.949 ms
+^C
+--- k8smaster ping statistics ---
+3 packets transmitted, 3 received, 0% packet l                                                  oss, time 2001ms
+rtt min/avg/max/mdev = 0.316/0.531/0.949/0.295                                                   ms
+vagrant@k8snode1:~$
+vagrant@k8snode1:~$ sudo su
+root@k8snode1:/home/vagrant# kubeadm reset
+[reset] WARNING: Changes made to this host by                                                   'kubeadm init' or 'kubeadm join' will be rever                                                  ted.
+[reset] Are you sure you want to proceed? [y/N                                                  ]: y
+[preflight] Running pre-flight checks
+W0622 05:41:43.232451    6862 reset.go:234] [r                                                  eset] No kubeadm config, using etcd pod spec t                                                  o get data directory
+[reset] No etcd config found. Assuming externa                                                  l etcd
+[reset] Please manually reset etcd to prevent                                                   further issues
+[reset] Stopping the kubelet service
+[reset] unmounting mounted directories in "/va                                                  r/lib/kubelet"
+[reset] Deleting contents of stateful director                                                  ies: [/var/lib/kubelet /etc/cni/net.d /var/lib                                                  /dockershim /var/run/kubernetes]
+[reset] Deleting contents of config directorie                                                  s: [/etc/kubernetes/manifests /etc/kubernetes/                                                  pki]
+[reset] Deleting files: [/etc/kubernetes/admin                                                  .conf /etc/kubernetes/kubelet.conf /etc/kubern                                                  etes/bootstrap-kubelet.conf /etc/kubernetes/co                                                  ntroller-manager.conf /etc/kubernetes/schedule                                                  r.conf]
+
+The reset process does not reset or clean up i                                                  ptables rules or IPVS tables.
+If you wish to reset iptables, you must do so                                                   manually.
+For example:
+iptables -F && iptables -t nat -F && iptables                                                   -t mangle -F && iptables -X
+
+If your cluster was setup to utilize IPVS, run                                                   ipvsadm --clear (or similar)
+to reset your system's IPVS tables.
+
+root@k8snode1:/home/vagrant# iptables -F && ip                                                  tables -t nat -F && iptables -t mangle -F && i                                                  ptables -X
+root@k8snode1:/home/vagrant#
+root@k8snode1:/home/vagrant#
+root@k8snode1:/home/vagrant#
+root@k8snode1:/home/vagrant#
+root@k8snode1:/home/vagrant# cd /vagrant
+root@k8snode1:/vagrant# ./kube-installations.s                                                  h
+installing docker
+Get:1 http://security.ubuntu.com/ubuntu xenial                                                  -security InRelease [109 kB]
+Hit:2 http://archive.ubuntu.com/ubuntu xenial                                                   InRelease
+Get:4 http://archive.ubuntu.com/ubuntu xenial-                                                  updates InRelease [109 kB]
+Get:5 https://download.docker.com/linux/ubuntu                                                   xenial InRelease [66.2 kB]
+Get:6 http://archive.ubuntu.com/ubuntu xenial-                                                  backports InRelease [107 kB]
+Get:3 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial InRelease [8,993 B]
+Get:7 http://security.ubuntu.com/ubuntu xenial                                                  -security/main amd64 Packages [679 kB]
+Get:8 http://archive.ubuntu.com/ubuntu xenial-                                                  updates/main amd64 Packages [976 kB]
+Get:9 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial/main amd64 Packages [26.9 kB]
+Get:10 http://security.ubuntu.com/ubuntu xenia                                                  l-security/main i386 Packages [557 kB]
+Get:11 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/main i386 Packages [834 kB]
+Get:12 http://security.ubuntu.com/ubuntu xenia                                                  l-security/main Translation-en [272 kB]
+Get:13 http://security.ubuntu.com/ubuntu xenia                                                  l-security/universe amd64 Packages [440 kB]
+Get:14 http://security.ubuntu.com/ubuntu xenia                                                  l-security/universe i386 Packages [382 kB]
+Get:15 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/main Translation-en [386 kB]
+Get:16 http://security.ubuntu.com/ubuntu xenia                                                  l-security/universe Translation-en [179 kB]
+Get:17 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/universe amd64 Packages [752 kB]
+Get:18 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/universe i386 Packages [687 kB]
+Get:19 http://archive.ubuntu.com/ubuntu xenial                                                  -updates/universe Translation-en [314 kB]
+Fetched 6,885 kB in 18s (380 kB/s)
+Reading package lists... Done
+N: Skipping acquire of configured file 'stable                                                  /binary-i386/Packages' as repository 'https://                                                  download.docker.com/linux/ubuntu xenial InRele                                                  ase' doesn't support architecture 'i386'
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+apt-transport-https is already the newest vers                                                  ion (1.2.32).
+ca-certificates is already the newest version                                                   (20170717~16.04.2).
+curl is already the newest version (7.47.0-1ub                                                  untu2.13).
+software-properties-common is already the newe                                                  st version (0.96.20.8).
+0 upgraded, 0 newly installed, 0 to remove and                                                   132 not upgraded.
+OK
+Hit:1 http://security.ubuntu.com/ubuntu xenial                                                  -security InRelease
+Hit:2 https://download.docker.com/linux/ubuntu                                                   xenial InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu xenial                                                   InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu xenial-                                                  updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu xenial-                                                  backports InRelease
+Hit:4 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial InRelease
+Reading package lists... Done
+N: Skipping acquire of configured file 'stable                                                  /binary-i386/Packages' as repository 'https://                                                  download.docker.com/linux/ubuntu xenial InRele                                                  ase' doesn't support architecture 'i386'
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+docker-ce is already the newest version (17.03                                                  .3~ce-0~ubuntu-xenial).
+0 upgraded, 0 newly installed, 0 to remove and                                                   131 not upgraded.
+installing kubeadm and kubectl
+Hit:1 https://download.docker.com/linux/ubuntu                                                   xenial InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu xenial                                                   InRelease
+Hit:4 http://security.ubuntu.com/ubuntu xenial                                                  -security InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu xenial-                                                  updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu xenial-                                                  backports InRelease
+Hit:2 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial InRelease
+Reading package lists... Done
+N: Skipping acquire of configured file 'stable                                                  /binary-i386/Packages' as repository 'https://                                                  download.docker.com/linux/ubuntu xenial InRele                                                  ase' doesn't support architecture 'i386'
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+apt-transport-https is already the newest vers                                                  ion (1.2.32).
+0 upgraded, 0 newly installed, 0 to remove and                                                   132 not upgraded.
+OK
+Hit:1 https://download.docker.com/linux/ubuntu                                                   xenial InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu xenial                                                   InRelease
+Hit:4 http://security.ubuntu.com/ubuntu xenial                                                  -security InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu xenial-                                                  updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu xenial-                                                  backports InRelease
+Hit:2 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial InRelease
+Reading package lists... Done
+N: Skipping acquire of configured file 'stable                                                  /binary-i386/Packages' as repository 'https://                                                  download.docker.com/linux/ubuntu xenial InRele                                                  ase' doesn't support architecture 'i386'
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages will be upgraded:
+  kubeadm kubectl kubelet
+3 upgraded, 0 newly installed, 0 to remove and                                                   129 not upgraded.
+Need to get 37.2 MB of archives.
+After this operation, 7,943 kB disk space will                                                   be freed.
+Get:1 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial/main amd64 kubelet amd64 1.15.                                                  0-00 [20.2 MB]
+Get:2 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial/main amd64 kubectl amd64 1.15.                                                  0-00 [8,763 kB]
+Get:3 https://packages.cloud.google.com/apt ku                                                  bernetes-xenial/main amd64 kubeadm amd64 1.15.                                                  0-00 [8,246 kB]
+Fetched 37.2 MB in 42s (880 kB/s)
+(Reading database ... 38792 files and director                                                  ies currently installed.)
+Preparing to unpack .../kubelet_1.15.0-00_amd6                                                  4.deb ...
+Unpacking kubelet (1.15.0-00) over (1.14.3-00)                                                   ...
+Preparing to unpack .../kubectl_1.15.0-00_amd6                                                  4.deb ...
+Unpacking kubectl (1.15.0-00) over (1.14.3-00)                                                   ...
+Preparing to unpack .../kubeadm_1.15.0-00_amd6                                                  4.deb ...
+Unpacking kubeadm (1.15.0-00) over (1.14.3-00)                                                   ...
+Setting up kubelet (1.15.0-00) ...
+Setting up kubectl (1.15.0-00) ...
+Setting up kubeadm (1.15.0-00) ...
+root@k8snode1:/vagrant#
+root@k8snode1:/vagrant# docker container ls
+CONTAINER ID        IMAGE               COMMAN                                                  D             CREATED             STATUS                                                                PORTS               NAMES
+root@k8snode1:/vagrant#
+root@k8snode1:/vagrant# kubeadm join --help
+
+When joining a kubeadm initialized cluster, we                                                   need to establish
+bidirectional trust. This is split into discov                                                  ery (having the Node
+trust the Kubernetes Control Plane) and TLS bo                                                  otstrap (having the
+Kubernetes Control Plane trust the Node).
+
+There are 2 main schemes for discovery. The fi                                                  rst is to use a shared
+token along with the IP address of the API ser                                                  ver. The second is to
+provide a file - a subset of the standard kube                                                  config file. This file
+can be a local file or downloaded via an HTTPS                                                   URL. The forms are
+kubeadm join --discovery-token abcdef.12345678                                                  90abcdef 1.2.3.4:6443,
+kubeadm join --discovery-file path/to/file.con                                                  f, or kubeadm join
+--discovery-file https://url/file.conf. Only o                                                  ne form can be used. If
+the discovery information is loaded from a URL                                                  , HTTPS must be used.
+Also, in that case the host installed CA bundl                                                  e is used to verify
+the connection.
+
+If you use a shared token for discovery, you s                                                  hould also pass the
+--discovery-token-ca-cert-hash flag to validat                                                  e the public key of the
+root certificate authority (CA) presented by t                                                  he Kubernetes Control Plane.
+The value of this flag is specified as "<hash-                                                  type>:<hex-encoded-value>",
+where the supported hash type is "sha256". The                                                   hash is calculated over
+the bytes of the Subject Public Key Info (SPKI                                                  ) object (as in RFC7469).
+This value is available in the output of "kube                                                  adm init" or can be
+calculated using standard tools. The --discove                                                  ry-token-ca-cert-hash flag
+may be repeated multiple times to allow more t                                                  han one public key.
+
+If you cannot know the CA public key hash ahea                                                  d of time, you can pass
+the --discovery-token-unsafe-skip-ca-verificat                                                  ion flag to disable this
+verification. This weakens the kubeadm securit                                                  y model since other nodes
+can potentially impersonate the Kubernetes Con                                                  trol Plane.
+
+The TLS bootstrap mechanism is also driven via                                                   a shared token. This is
+used to temporarily authenticate with the Kube                                                  rnetes Control Plane to submit a
+certificate signing request (CSR) for a locall                                                  y created key pair. By
+default, kubeadm will set up the Kubernetes Co                                                  ntrol Plane to automatically
+approve these signing requests. This token is                                                   passed in with the
+--tls-bootstrap-token abcdef.1234567890abcdef                                                   flag.
+
+Often times the same token is used for both pa                                                  rts. In this case, the
+--token flag can be used instead of specifying                                                   each token individually.
+
+
+The "join [api-server-endpoint]" command execu                                                  tes the following phases:
+```
+preflight              Run join pre-flight che                                                  cks
+control-plane-prepare  Prepare the machine for                                                   serving a control plane
+  /download-certs        [EXPERIMENTAL] Downlo                                                  ad certificates shared among control-plane nod                                                  es from the kubeadm-certs Secret
+  /certs                 Generate the certific                                                  ates for the new control plane components
+  /kubeconfig            Generate the kubeconf                                                  ig for the new control plane components
+  /control-plane         Generate the manifest                                                  s for the new control plane components
+kubelet-start          Write kubelet settings,                                                   certificates and (re)start the kubelet
+control-plane-join     Join a machine as a con                                                  trol plane instance
+  /etcd                  Add a new local etcd                                                   member
+  /update-status         Register the new cont                                                  rol-plane node into the ClusterStatus maintain                                                  ed in the kubeadm-config ConfigMap
+  /mark-control-plane    Mark a node as a cont                                                  rol-plane
+```
+
+Usage:
+  kubeadm join [api-server-endpoint] [flags]
+  kubeadm join [command]
+
+Available Commands:
+  phase       Use this command to invoke singl                                                  e phase of the join workflow
+
+Flags:
+      --apiserver-advertise-address string                                                              If the node should host a new control                                                   plane instance, the IP address the API Server                                                   will advertise it's listening on. If not set t                                                  he default network interface will be used.
+      --apiserver-bind-port int32                                                                       If the node should host a new control                                                   plane instance, the port for the API Server to                                                   bind to. (default 6443)
+      --certificate-key string                                                                          Use this key to decrypt the certificat                                                  e secrets uploaded by init.
+      --config string                                                                                   Path to kubeadm config file.
+      --control-plane                                                                                   Create a new control plane instance on                                                   this node
+      --cri-socket string                                                                               Path to the CRI socket to connect. If                                                   empty kubeadm will try to auto-detect this val                                                  ue; use this option only if you have more than                                                   one CRI installed or if you have non-standard                                                   CRI socket.
+      --discovery-file string                                                                           For file-based discovery, a file or UR                                                  L from which to load cluster information.
+      --discovery-token string                                                                          For token-based discovery, the token u                                                  sed to validate cluster information fetched fr                                                  om the API server.
+      --discovery-token-ca-cert-hash strings                                                            For token-based discovery, validate th                                                  at the root CA public key matches this hash (f                                                  ormat: "<type>:<value>").
+      --discovery-token-unsafe-skip-ca-verific                                                  ation   For token-based discovery, allow joini                                                  ng without --discovery-token-ca-cert-hash pinn                                                  ing.
+  -h, --help                                                                                            help for join
+      --ignore-preflight-errors strings                                                                 A list of checks whose errors will be                                                   shown as warnings. Example: 'IsPrivilegedUser,                                                  Swap'. Value 'all' ignores errors from all che                                                  cks.
+      --node-name string                                                                                Specify the node name.
+      --skip-phases strings                                                                             List of phases to be skipped
+      --tls-bootstrap-token string                                                                      Specify the token used to temporarily                                                   authenticate with the Kubernetes Control Plane                                                   while joining the node.
+      --token string                                                                                    Use this token for both discovery-toke                                                  n and tls-bootstrap-token when those values ar                                                  e not provided.
+
+Global Flags:
+      --log-file string          If non-empty,                                                   use this log file
+      --log-file-max-size uint   Defines the m                                                  aximum size a log file can grow to. Unit is me                                                  gabytes. If the value is 0, the maximum file s                                                  ize is unlimited. (default 1800)
+      --rootfs string            [EXPERIMENTAL                                                  ] The path to the 'real' host root filesystem.
+      --skip-headers             If true, avoi                                                  d header prefixes in the log messages
+      --skip-log-headers         If true, avoi                                                  d headers when opening log files
+  -v, --v Level                  number for th                                                  e log level verbosity
+
+Use "kubeadm join [command] --help" for more i                                                  nformation about a command.
+root@k8snode1:/vagrant# kubeadm join --help
+
+When joining a kubeadm initialized cluster, we need to establish
+bidirectional trust. This is split into discovery (having the Node
+trust the Kubernetes Control Plane) and TLS bootstrap (having the
+Kubernetes Control Plane trust the Node).
+
+There are 2 main schemes for discovery. The first is to use a shared
+token along with the IP address of the API server. The second is to
+provide a file - a subset of the standard kubeconfig file. This file
+can be a local file or downloaded via an HTTPS URL. The forms are
+kubeadm join --discovery-token abcdef.1234567890abcdef 1.2.3.4:6443,
+kubeadm join --discovery-file path/to/file.conf, or kubeadm join
+--discovery-file https://url/file.conf. Only one form can be used. If
+the discovery information is loaded from a URL, HTTPS must be used.
+Also, in that case the host installed CA bundle is used to verify
+the connection.
+
+If you use a shared token for discovery, you should also pass the
+--discovery-token-ca-cert-hash flag to validate the public key of the
+root certificate authority (CA) presented by the Kubernetes Control Plane.
+The value of this flag is specified as "<hash-type>:<hex-encoded-value>",
+where the supported hash type is "sha256". The hash is calculated over
+the bytes of the Subject Public Key Info (SPKI) object (as in RFC7469).
+This value is available in the output of "kubeadm init" or can be
+calculated using standard tools. The --discovery-token-ca-cert-hash flag
+may be repeated multiple times to allow more than one public key.
+
+If you cannot know the CA public key hash ahead of time, you can pass
+the --discovery-token-unsafe-skip-ca-verification flag to disable this
+verification. This weakens the kubeadm security model since other nodes
+can potentially impersonate the Kubernetes Control Plane.
+
+The TLS bootstrap mechanism is also driven via a shared token. This is
+used to temporarily authenticate with the Kubernetes Control Plane to submit a
+certificate signing request (CSR) for a locally created key pair. By
+default, kubeadm will set up the Kubernetes Control Plane to automatically
+approve these signing requests. This token is passed in with the
+--tls-bootstrap-token abcdef.1234567890abcdef flag.
+
+Often times the same token is used for both parts. In this case, the
+--token flag can be used instead of specifying each token individually.
+
+
+The "join [api-server-endpoint]" command executes the following phases:
+```
+preflight              Run join pre-flight checks
+control-plane-prepare  Prepare the machine for serving a control plane
+  /download-certs        [EXPERIMENTAL] Download certificates shared among contr                ol-plane nodes from the kubeadm-certs Secret
+  /certs                 Generate the certificates for the new control plane com                ponents
+  /kubeconfig            Generate the kubeconfig for the new control plane compo                nents
+  /control-plane         Generate the manifests for the new control plane compon                ents
+kubelet-start          Write kubelet settings, certificates and (re)start the ku                belet
+control-plane-join     Join a machine as a control plane instance
+  /etcd                  Add a new local etcd member
+  /update-status         Register the new control-plane node into the ClusterSta                tus maintained in the kubeadm-config ConfigMap
+  /mark-control-plane    Mark a node as a control-plane
+```
+
+Usage:
+  kubeadm join [api-server-endpoint] [flags]
+  kubeadm join [command]
+
+Available Commands:
+  phase       Use this command to invoke single phase of the join workflow
+
+Flags:
+      --apiserver-advertise-address string            If the node should host a                 new control plane instance, the IP address the API Server will advertise it's li                stening on. If not set the default network interface will be used.
+      --apiserver-bind-port int32                     If the node should host a                 new control plane instance, the port for the API Server to bind to. (default 644                3)
+      --certificate-key string                        Use this key to decrypt th                e certificate secrets uploaded by init.
+      --config string                                 Path to kubeadm config fil                e.
+      --control-plane                                 Create a new control plane                 instance on this node
+      --cri-socket string                             Path to the CRI socket to                 connect. If empty kubeadm will try to auto-detect this value; use this option on                ly if you have more than one CRI installed or if you have non-standard CRI socke                t.
+      --discovery-file string                         For file-based discovery,                 a file or URL from which to load cluster information.
+      --discovery-token string                        For token-based discovery,                 the token used to validate cluster information fetched from the API server.
+      --discovery-token-ca-cert-hash strings          For token-based discovery,                 validate that the root CA public key matches this hash (format: "<type>:<value>                ").
+      --discovery-token-unsafe-skip-ca-verification   For token-based discovery,                 allow joining without --discovery-token-ca-cert-hash pinning.
+  -h, --help                                          help for join
+      --ignore-preflight-errors strings               A list of checks whose err                ors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ign                ores errors from all checks.
+      --node-name string                              Specify the node name.
+      --skip-phases strings                           List of phases to be skipp                ed
+      --tls-bootstrap-token string                    Specify the token used to                 temporarily authenticate with the Kubernetes Control Plane while joining the nod                e.
+      --token string                                  Use this token for both di                scovery-token and tls-bootstrap-token when those values are not provided.
+
+Global Flags:
+      --log-file string          If non-empty, use this log file
+      --log-file-max-size uint   Defines the maximum size a log file can grow to                . Unit is megabytes. If the value is 0, the maximum file size is unlimited. (def                ault 1800)
+      --rootfs string            [EXPERIMENTAL] The path to the 'real' host root                 filesystem.
+      --skip-headers             If true, avoid header prefixes in the log messa                ges
+      --skip-log-headers         If true, avoid headers when opening log files
+  -v, --v Level                  number for the log level verbosity
+
+Use "kubeadm join [command] --help" for more information about a command.
+root@k8snode1:/vagrant#
+root@k8snode1:/vagrant# kubeadm join 192.167.10.70:6443 --token ai1071.5p0x4ntf4c2dl6od \
+>     --discovery-token-ca-cert-hash sha256:27b7dfeeedfb20f439cd5ed1c6c25e3ca7110c8337ba34bdb16bc2c66275c771
+[preflight] Running pre-flight checks
+        [WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+[preflight] Reading configuration from the cluster...
+[preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[kubelet-start] Downloading configuration for the kubelet from the "kubelet-config-1.15" ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Activating the kubelet service
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+root@k8snode1:/vagrant# kubeadm join --help
+
+When joining a kubeadm initialized cluster, we need to establish
+bidirectional trust. This is split into discovery (having the Node
+trust the Kubernetes Control Plane) and TLS bootstrap (having the
+Kubernetes Control Plane trust the Node).
+
+There are 2 main schemes for discovery. The first is to use a shared
+token along with the IP address of the API server. The second is to
+provide a file - a subset of the standard kubeconfig file. This file
+can be a local file or downloaded via an HTTPS URL. The forms are
+kubeadm join --discovery-token abcdef.1234567890abcdef 1.2.3.4:6443,
+kubeadm join --discovery-file path/to/file.conf, or kubeadm join
+--discovery-file https://url/file.conf. Only one form can be used. If
+the discovery information is loaded from a URL, HTTPS must be used.
+Also, in that case the host installed CA bundle is used to verify
+the connection.
+
+If you use a shared token for discovery, you should also pass the
+--discovery-token-ca-cert-hash flag to validate the public key of the
+root certificate authority (CA) presented by the Kubernetes Control Plane.
+The value of this flag is specified as "<hash-type>:<hex-encoded-value>",
+where the supported hash type is "sha256". The hash is calculated over
+the bytes of the Subject Public Key Info (SPKI) object (as in RFC7469).
+This value is available in the output of "kubeadm init" or can be
+calculated using standard tools. The --discovery-token-ca-cert-hash flag
+may be repeated multiple times to allow more than one public key.
+
+If you cannot know the CA public key hash ahead of time, you can pass
+the --discovery-token-unsafe-skip-ca-verification flag to disable this
+verification. This weakens the kubeadm security model since other nodes
+can potentially impersonate the Kubernetes Control Plane.
+
+The TLS bootstrap mechanism is also driven via a shared token. This is
+used to temporarily authenticate with the Kubernetes Control Plane to submit a
+certificate signing request (CSR) for a locally created key pair. By
+default, kubeadm will set up the Kubernetes Control Plane to automatically
+approve these signing requests. This token is passed in with the
+--tls-bootstrap-token abcdef.1234567890abcdef flag.
+
+Often times the same token is used for both parts. In this case, the
+--token flag can be used instead of specifying each token individually.
+
+
+The "join [api-server-endpoint]" command executes the following phases:
+```
+preflight              Run join pre-flight checks
+control-plane-prepare  Prepare the machine for serving a control plane
+  /download-certs        [EXPERIMENTAL] Download certificates shared among control-plane nodes from the kubeadm-certs Secret
+  /certs                 Generate the certificates for the new control plane components
+  /kubeconfig            Generate the kubeconfig for the new control plane components
+  /control-plane         Generate the manifests for the new control plane components
+kubelet-start          Write kubelet settings, certificates and (re)start the kubelet
+control-plane-join     Join a machine as a control plane instance
+  /etcd                  Add a new local etcd member
+  /update-status         Register the new control-plane node into the ClusterStatus maintained in the kubeadm-config ConfigMap
+  /mark-control-plane    Mark a node as a control-plane
+```
+
+Usage:
+  kubeadm join [api-server-endpoint] [flags]
+  kubeadm join [command]
+
+Available Commands:
+  phase       Use this command to invoke single phase of the join workflow
+
+Flags:
+      --apiserver-advertise-address string            If the node should host a new control plane instance, the IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
+      --apiserver-bind-port int32                     If the node should host a new control plane instance, the port for the API Server to bind to. (default 6443)
+      --certificate-key string                        Use this key to decrypt the certificate secrets uploaded by init.
+      --config string                                 Path to kubeadm config file.
+      --control-plane                                 Create a new control plane instance on this node
+      --cri-socket string                             Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.
+      --discovery-file string                         For file-based discovery, a file or URL from which to load cluster information.
+      --discovery-token string                        For token-based discovery, the token used to validate cluster information fetched from the API server.
+      --discovery-token-ca-cert-hash strings          For token-based discovery, validate that the root CA public key matches this hash (format: "<type>:<value>").
+      --discovery-token-unsafe-skip-ca-verification   For token-based discovery, allow joining without --discovery-token-ca-cert-hash pinning.
+  -h, --help                                          help for join
+      --ignore-preflight-errors strings               A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+      --node-name string                              Specify the node name.
+      --skip-phases strings                           List of phases to be skipped
+      --tls-bootstrap-token string                    Specify the token used to temporarily authenticate with the Kubernetes Control Plane while joining the node.
+      --token string                                  Use this token for both discovery-token and tls-bootstrap-token when those values are not provided.
+
+Global Flags:
+      --log-file string          If non-empty, use this log file
+      --log-file-max-size uint   Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0, the maximum file size is unlimited. (default 1800)
+      --rootfs string            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+      --skip-headers             If true, avoid header prefixes in the log messages
+      --skip-log-headers         If true, avoid headers when opening log files
+  -v, --v Level                  number for the log level verbosity
+
+Use "kubeadm join [command] --help" for more information about a command.
+root@k8snode1:/vagrant#
+root@k8snode1:/vagrant#
