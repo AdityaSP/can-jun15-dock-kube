@@ -1,0 +1,20 @@
+1. Clean up
+kubectl delete deployment tiller-deploy --namespace kube-system
+helm reset
+
+2. Create service account for tiller
+  
+  kubectl create serviceaccount --namespace kube-system tiller
+  kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+  kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+  
+3. run helm with tiller account
+helm init --upgrade --service-account tiller  
+
+4. create chart
+helm create myapp
+
+5. install chart
+cd myapp
+helm install .
+
